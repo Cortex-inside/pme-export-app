@@ -1,3 +1,36 @@
+## PME Export App - Requisitos e execução
+
+Este projeto usa **Laravel 5.6** e dependências legadas de PHP 7.x. Para facilitar instalação em ambientes modernos com Composer 2, o `composer.json` agora fixa `config.platform.php` em `7.4.33` e desativa `platform-check` em runtime.
+
+### Passos recomendados
+
+1. `cp .env.example .env`
+2. `composer install --no-interaction --prefer-dist`
+3. `php artisan key:generate`
+4. Configure banco em `.env` e execute `php artisan migrate`
+5. `php artisan serve`
+
+> Observação: em produção, execute com PHP 7.4 para máxima compatibilidade com o ecossistema Laravel 5.6 deste repositório.
+
+### Fallback de repositório Composer (quando Packagist falhar no proxy)
+
+Se o ambiente retornar `HTTP 403` no `CONNECT` para o Packagist, use o script de fallback para tentar mirrors automaticamente:
+
+1. `scripts/composer-fallback-update.sh install`
+2. `scripts/composer-fallback-update.sh update --with-all-dependencies`
+
+Parâmetros úteis:
+
+- `COMPOSER_INTERNAL_MIRROR=https://seu-mirror-interno/repository/php/` (prioriza mirror interno da empresa)
+- `COMPOSER_ALLOW_DIRECT=1` (também tenta conexão direta sem proxy para cada mirror)
+
+Para atualizar especificamente o framework Laravel:
+
+- `scripts/update-laravel-framework.sh --dry-run`
+- `COMPOSER_INTERNAL_MIRROR=https://seu-mirror-interno/repository/php/ scripts/update-laravel-framework.sh`
+
+O script tenta Huawei Cloud, Aliyun, Tencent e Packagist; ao final, informa como usar mirror interno quando todos estiverem bloqueados.
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
