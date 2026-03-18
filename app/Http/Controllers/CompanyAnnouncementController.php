@@ -88,7 +88,7 @@ class CompanyAnnouncementController extends Controller
      */
     public function update($id, UpdateCaeRequest $request)
     {
-        $cae = $this->caeRepository->findWithoutFail($id);
+        $cae = $this->caeRepository->find($id);
 
         if (empty($cae)) {
             Flash::error('Cae not found');

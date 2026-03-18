@@ -14,8 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
         Schema::defaultStringLength(191);
+
+        // Replaces removed infyomlabs/adminlte-templates package
+        $this->loadViewsFrom(
+            resource_path('views/vendor/adminlte-templates'),
+            'adminlte-templates'
+        );
     }
 
     /**

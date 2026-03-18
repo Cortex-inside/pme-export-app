@@ -78,7 +78,7 @@ class CompanyRepresentativeController extends AppBaseController
      */
     public function show($id)
     {
-        $companyRepresentative = $this->companyRepresentativeRepository->findWithoutFail($id);
+        $companyRepresentative = $this->companyRepresentativeRepository->find($id);
 
         if (empty($companyRepresentative)) {
             Flash::error('Representante da empresa não encontrado');
@@ -98,7 +98,7 @@ class CompanyRepresentativeController extends AppBaseController
      */
     public function edit($id)
     {
-        $companyRepresentative = $this->companyRepresentativeRepository->findWithoutFail($id);
+        $companyRepresentative = $this->companyRepresentativeRepository->find($id);
 
         if (empty($companyRepresentative)) {
             Flash::error('Representante da empresa não encontrado');
@@ -119,7 +119,7 @@ class CompanyRepresentativeController extends AppBaseController
      */
     public function update($id, UpdateCompanyRepresentativeRequest $request)
     {
-        $companyRepresentative = $this->companyRepresentativeRepository->findWithoutFail($id);
+        $companyRepresentative = $this->companyRepresentativeRepository->find($id);
 
         if (empty($companyRepresentative)) {
             Flash::error('Representante da empresa não encontrado');
@@ -143,7 +143,7 @@ class CompanyRepresentativeController extends AppBaseController
      */
     public function destroy($id)
     {
-        $companyRepresentative = $this->companyRepresentativeRepository->findWithoutFail($id);
+        $companyRepresentative = $this->companyRepresentativeRepository->find($id);
 
         if (empty($companyRepresentative)) {
             Flash::error('Representante da empresa não encontrado');

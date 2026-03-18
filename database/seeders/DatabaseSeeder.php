@@ -1,5 +1,7 @@
-90<?php
+<?php
 
+namespace Database\Seeders;
+use Database\Seeders\PaisesTableSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

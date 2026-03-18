@@ -3,7 +3,7 @@
 namespace PMEexport\Repositories;
 
 use PMEexport\Models\LegalSituation;
-use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class LegalSituationRepository

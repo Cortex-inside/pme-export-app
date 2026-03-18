@@ -35,10 +35,10 @@
                     @shield('companies.destroy')
                     {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
                     @endshield
-                    @is(['empresa','empresa_estrangeira'])
+                    @hasanyrole('empresa|empresa_estrangeira')
                     <a href="{!! route('sysCompany.company.index', [$company->uuid]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i>Show</a>&nbsp;
-                    @endis
+                    @endhasanyrole
                 </div>
                 {!! Form::close() !!}
             </td>

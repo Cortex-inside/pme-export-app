@@ -49,11 +49,11 @@
         <br>
 
 
-        @is(['empresa','empresa_estrangeira'])
+        @hasanyrole('empresa|empresa_estrangeira')
             <a href="{{ url('/exchange') }}">Voltar</a><br>
         @else
             <a href="{{ url('/admin') }}">Voltar</a><br>
-        @endis
+        @endhasanyrole
 
     </div>
     <!-- /.login-box-body -->

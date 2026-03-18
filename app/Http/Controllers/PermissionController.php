@@ -2,10 +2,10 @@
 
 namespace PMEexport\Http\Controllers;
 
-use Artesaos\Defender\Facades\Defender;
-use Artesaos\Defender\Permission;
+use Spatie\Permission\Models\Permission;
 use PMEexport\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class PermissionController extends AppBaseController
 {
@@ -39,9 +39,8 @@ class PermissionController extends AppBaseController
      */
     public function store(Request $request)
     {
-
         $data = $request->all();
-        Defender::createPermission($data["name"], $data["readable_name"]);
+        Permission::create(['name' => $data["name"], 'guard_name' => 'web']);
 
         return redirect()->route('permissions.index')->with('message', 'Item criado com sucesso.');
     }
@@ -81,7 +80,6 @@ class PermissionController extends AppBaseController
      */
     public function update(Request $request, $id)
     {
-
         $permission = Permission::findOrFail($id);
 
         $data = $request->all();
@@ -90,7 +88,6 @@ class PermissionController extends AppBaseController
         $permission->save($data);
 
         Flash::success('Item atualizado com sucesso.');
-
 
         return redirect()->route('permissions.index');
     }

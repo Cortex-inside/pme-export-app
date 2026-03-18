@@ -79,7 +79,7 @@ class RequirementController extends AppBaseController
      */
     public function show($id)
     {
-        $requirement = $this->requirementRepository->findWithoutFail($id);
+        $requirement = $this->requirementRepository->find($id);
 
         if (empty($requirement)) {
             Flash::error('Exigencia não encontrada');
@@ -99,7 +99,7 @@ class RequirementController extends AppBaseController
      */
     public function edit($id)
     {
-        $requirement = $this->requirementRepository->findWithoutFail($id);
+        $requirement = $this->requirementRepository->find($id);
 
         if (empty($requirement)) {
             Flash::error('Exigencia não encontrada');
@@ -120,7 +120,7 @@ class RequirementController extends AppBaseController
      */
     public function update($id, UpdateRequirementRequest $request)
     {
-        $requirement = $this->requirementRepository->findWithoutFail($id);
+        $requirement = $this->requirementRepository->find($id);
 
         if (empty($requirement)) {
             Flash::error('Exigencia não encontrada');
@@ -144,7 +144,7 @@ class RequirementController extends AppBaseController
      */
     public function destroy($id)
     {
-        $requirement = $this->requirementRepository->findWithoutFail($id);
+        $requirement = $this->requirementRepository->find($id);
 
         if (empty($requirement)) {
             Flash::error('Exigencia não encontrada');

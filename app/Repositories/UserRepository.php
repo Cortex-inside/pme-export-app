@@ -3,7 +3,7 @@
 namespace PMEexport\Repositories;
 
 use PMEexport\Models\Cae;
-use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
 use PMEexport\Models\User;
 
 /**

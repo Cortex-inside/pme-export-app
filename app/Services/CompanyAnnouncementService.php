@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Guilherme Dias
@@ -19,7 +20,7 @@ use PMEexport\Repositories\CompanyAnnouncementRepository;
 use PMEexport\Repositories\ProductCategoryRepository;
 use PMEexport\Repositories\AnnouncementDocumentRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Webpatser\Uuid\Uuid;
+use Illuminate\Support\Str;
 
 class CompanyAnnouncementService
 {
@@ -45,12 +46,13 @@ class CompanyAnnouncementService
      */
     private $productCategoryService;
 
-    public function __construct(CompanyAnnouncementRepository $announcementRepository,
-                                AnnouncementDocumentRepository $announcementDocumentRepository,
-                                AnnouncementImageRepository $announcementImageRepository,
-                                AnnouncementCompanieRepository $announcementCompanieRepository,
-                                ProductCategoryService $productCategoryService )
-    {
+    public function __construct(
+        CompanyAnnouncementRepository $announcementRepository,
+        AnnouncementDocumentRepository $announcementDocumentRepository,
+        AnnouncementImageRepository $announcementImageRepository,
+        AnnouncementCompanieRepository $announcementCompanieRepository,
+        ProductCategoryService $productCategoryService
+    ) {
 
         $this->announcementRepository = $announcementRepository;
         $this->announcementDocumentRepository = $announcementDocumentRepository;
@@ -78,15 +80,17 @@ class CompanyAnnouncementService
         $companyId = Auth::user()->company_id;
 
         $data['company_id'] = $companyId;
-        $data["price"] = str_replace(",","",$data["price"]);
+        $data["price"] = str_replace(",", "", $data["price"]);
 
         $companyAnnouncement = $this->announcementRepository->create($data);
         $companyAnnouncementId = $companyAnnouncement->id;
 
-        if($companyAnnouncementId && $visibility == 1) {
+        if ($companyAnnouncementId && $visibility == 1) {
             foreach ($data['company_ids'] as $company_id) {
-                $this->announcementCompanieRepository->create(['company_announcement_id'=>$companyAnnouncementId,
-                    'companie_id' => $company_id]);
+                $this->announcementCompanieRepository->create([
+                    'company_announcement_id' => $companyAnnouncementId,
+                    'companie_id' => $company_id
+                ]);
             }
         }
 
@@ -98,9 +102,9 @@ class CompanyAnnouncementService
 
                 $s3Client = Storage::disk('s3');
 
-                $name = Uuid::generate() . "." . $file->getClientOriginalExtension();
+                $name = (string) Str::uuid() . "." . $file->getClientOriginalExtension();
                 $nameOriginal = $file->getClientOriginalName();
-                $filePath = '/announcements/docs/'.$companyAnnouncementId."/" . $name;
+                $filePath = '/announcements/docs/' . $companyAnnouncementId . "/" . $name;
                 $s3Client->put($filePath, file_get_contents($file));
                 $url = $s3Client->url($filePath);
 
@@ -127,9 +131,9 @@ class CompanyAnnouncementService
 
                 $s3Client = Storage::disk('s3');
 
-                $name = Uuid::generate() . "." . $file->getClientOriginalExtension();
+                $name = (string) Str::uuid() . "." . $file->getClientOriginalExtension();
                 $nameOriginal = $file->getClientOriginalName();
-                $filePath = '/announcements/imagens_galery/'.$companyAnnouncementId."/" . $name;
+                $filePath = '/announcements/imagens_galery/' . $companyAnnouncementId . "/" . $name;
                 $s3Client->put($filePath, file_get_contents($file));
                 $url = $s3Client->url($filePath);
 
@@ -154,7 +158,7 @@ class CompanyAnnouncementService
 
     public function destroy($announcement)
     {
-//        $announcement = $this->announcementRepository->findWhere(["uuid"=>$announcement->uuid]);
+        //        $announcement = $this->announcementRepository->findWhere(["uuid"=>$announcement->uuid]);
 
         if (empty($announcement)) {
             Flash::error('Anuncio não encontrado');
@@ -162,7 +166,7 @@ class CompanyAnnouncementService
             return redirect(route('sysCompany.companyAnnouncements.indexByCompany'));
         }
 
-        if($announcement->request_announcements->count()) {
+        if ($announcement->request_announcements->count()) {
             Flash::error('Existe pedidos relacionados a este anuncio.');
 
             return redirect(route('sysCompany.companyAnnouncements.indexByCompany'));
@@ -177,7 +181,7 @@ class CompanyAnnouncementService
 
     public function openEditView($id)
     {
-        $announcement = $this->announcementRepository->findWithoutFail($id);
+        $announcement = $this->announcementRepository->find($id);
 
         if (empty($announcement)) {
             Flash::error('Anúncio não encontrado.');
@@ -192,7 +196,7 @@ class CompanyAnnouncementService
 
     public function openShowView($announcement)
     {
-//        $announcement = $this->announcementRepository->findWithoutFail($id);
+        //        $announcement = $this->announcementRepository->find($id);
 
         if (empty($announcement)) {
             Flash::error('Anúncio não encontrado');

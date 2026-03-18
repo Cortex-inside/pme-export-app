@@ -16,7 +16,7 @@
                 {{ $subcopy }}
             @endcomponent
         @endslot
-    @endisset
+    @endhasroleset
 
     {{-- Footer --}}
     @slot('footer')

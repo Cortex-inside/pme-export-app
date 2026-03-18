@@ -3,7 +3,7 @@
 namespace PMEexport\Models;
 
 use Carbon\Carbon;
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PMEexport\Traits\Uuids;
 
@@ -40,7 +40,6 @@ class Requirement extends Model
     const UPDATED_AT = 'updated_at';
 
 
-    protected $dates = ['deleted_at'];
 
 
     public $fillable = [

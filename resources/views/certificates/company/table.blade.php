@@ -17,11 +17,11 @@
                     <a href="{!! route('sysCompany.certificates.showMyCertificates', [$companyCertificate->id]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i>@lang("sistema.Show")</a>&nbsp;
 
-                    @is('admin')
+                    @hasrole('admin')
                         @if($companyCertificate->certificate->id <> 1)
                         {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
                         @endif
-                    @endis
+                    @endhasrole
                 </div>
                 {!! Form::close() !!}
             </td>

@@ -2,8 +2,7 @@
 
 namespace PMEexport\Http\Controllers;
 
-use Artesaos\Defender\Facades\Defender;
-use Artesaos\Defender\Role;
+use Spatie\Permission\Models\Role;
 use PMEexport\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use PMEexport\Services\RoleService;
@@ -48,7 +47,7 @@ class RoleController extends AppBaseController
     public function store(Request $request)
     {
         $data = $request->all();
-        Defender::createRole($data["name"]);
+        Role::create(['name' => $data["name"], 'guard_name' => 'web']);
 
         return redirect()->route('roles.index')->with('message', 'Item criado com sucesso.');
     }

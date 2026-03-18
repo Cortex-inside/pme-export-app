@@ -2,7 +2,6 @@
 
 namespace PMEexport\Criteria;
 
-use Artesaos\Defender\Facades\Defender;
 use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;

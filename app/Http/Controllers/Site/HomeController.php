@@ -28,12 +28,9 @@ class HomeController extends AppBaseController
      */
     public function index()
     {
-
-        return redirect('/exchange');
-
         $listProductCategories = $this->categoryService->getAll();
 
-        return view('site.index')->with(["listProductCategories"=>$listProductCategories]);;
+        return view('site.index')->with(["listProductCategories"=>$listProductCategories]);
     }
     /**
      * Show the form for creating a new Cae.

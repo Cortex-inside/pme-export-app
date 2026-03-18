@@ -84,45 +84,45 @@ Route::group(['prefix' => 'admin','middleware'=>['auth','RedirectIfEmpresa', "lo
 
     //PERMISSIONS
     Route::group(['prefix' => 'permissions'], function () {
-        Route::get('/', ["as"=>"permissions.index","uses" => "PermissionController@index",'middleware'=>['needsPermission'], 'shield' => 'permissions.index']);
+        Route::get('/', ["as"=>"permissions.index","uses" => "PermissionController@index",'middleware'=>['permission:permissions.index']]);
         Route::post('/', ["as"=>"permissions.store","uses" => "PermissionController@store"]);
-        Route::get('/create', ["as"=>"permissions.create","uses" => "PermissionController@create",'middleware'=>['needsPermission'], 'shield' => 'permissions.create']);
-        Route::get('/{permission}', ["as"=>"permissions.show","uses" => "PermissionController@show",'middleware'=>['needsPermission'], 'shield' => 'permissions.show']);
+        Route::get('/create', ["as"=>"permissions.create","uses" => "PermissionController@create",'middleware'=>['permission:permissions.create']]);
+        Route::get('/{permission}', ["as"=>"permissions.show","uses" => "PermissionController@show",'middleware'=>['permission:permissions.show']]);
         Route::put('/{permission}', ["as"=>"permissions.update","uses" => "PermissionController@update"]);
-        Route::get('/{permission}/edit', ["as"=>"permissions.edit","uses" => "PermissionController@edit",'middleware'=>['needsPermission'], 'shield' => 'permissions.edit']);
-        Route::delete('/{permission}', ["as"=>"permissions.destroy","uses" => "PermissionController@destroy",'middleware'=>['needsPermission'], 'shield' => 'permissions.destroy']);
+        Route::get('/{permission}/edit', ["as"=>"permissions.edit","uses" => "PermissionController@edit",'middleware'=>['permission:permissions.edit']]);
+        Route::delete('/{permission}', ["as"=>"permissions.destroy","uses" => "PermissionController@destroy",'middleware'=>['permission:permissions.destroy']]);
     });
 
     //ROLES
     Route::group(['prefix' => 'roles'], function () {
-        Route::get('/', ["as"=>"roles.index","uses" => "RoleController@index",'middleware'=>['needsPermission'], 'shield' => 'roles.index']);
+        Route::get('/', ["as"=>"roles.index","uses" => "RoleController@index",'middleware'=>['permission:roles.index']]);
         Route::post('/', ["as"=>"roles.store","uses" => "RoleController@store"]);
-        Route::get('/create', ["as"=>"roles.create","uses" => "RoleController@create",'middleware'=>['needsPermission'], 'shield' => 'roles.create']);
-        Route::get('/{role}', ["as"=>"roles.show","uses" => "RoleController@show",'middleware'=>['needsPermission'], 'shield' => 'roles.show']);
+        Route::get('/create', ["as"=>"roles.create","uses" => "RoleController@create",'middleware'=>['permission:roles.create']]);
+        Route::get('/{role}', ["as"=>"roles.show","uses" => "RoleController@show",'middleware'=>['permission:roles.show']]);
         Route::put('/{role}', ["as"=>"roles.update","uses" => "RoleController@update"]);
-        Route::get('/{role}/edit', ["as"=>"roles.edit","uses" => "RoleController@edit",'middleware'=>['needsPermission'], 'shield' => 'roles.edit']);
-        Route::delete('/{role}', ["as"=>"roles.destroy","uses" => "RoleController@destroy",'middleware'=>['needsPermission'], 'shield' => 'roles.destroy']);
+        Route::get('/{role}/edit', ["as"=>"roles.edit","uses" => "RoleController@edit",'middleware'=>['permission:roles.edit']]);
+        Route::delete('/{role}', ["as"=>"roles.destroy","uses" => "RoleController@destroy",'middleware'=>['permission:roles.destroy']]);
 
         Route::put('/permission/{id}', ["as"=>"roles.permission.update","uses" => "RoleController@permissionUpdate"]);
     });
 
     //USERS
     Route::group(['prefix' => 'users'], function () {
-        Route::get('/', ["as"=>"users.index","uses" => "UserController@index",'middleware'=>['needsPermission'], 'shield' => 'users.index']);
-        Route::get('/index-empresa', ["as"=>"users.indexEmpresa","uses" => "UserController@indexEmpresa",'middleware'=>['needsPermission'], 'shield' => 'users.index']);
-        Route::get('/create', ["as"=>"users.create","uses" => "UserController@create",'middleware'=>['needsPermission'], 'shield' => 'users.create']);
+        Route::get('/', ["as"=>"users.index","uses" => "UserController@index",'middleware'=>['permission:users.index']]);
+        Route::get('/index-empresa', ["as"=>"users.indexEmpresa","uses" => "UserController@indexEmpresa",'middleware'=>['permission:users.index']]);
+        Route::get('/create', ["as"=>"users.create","uses" => "UserController@create",'middleware'=>['permission:users.create']]);
         Route::post('/', ["as"=>"users.store","uses" => "UserController@store"]);
-        Route::get('/{user}', ["as"=>"users.show","uses" => "UserController@show",'middleware'=>['needsPermission'], 'shield' => 'users.show']);
+        Route::get('/{user}', ["as"=>"users.show","uses" => "UserController@show",'middleware'=>['permission:users.show']]);
         Route::put('/{user}', ["as"=>"users.update","uses" => "UserController@update"]);
-        Route::get('/{user}/edit', ["as"=>"users.edit","uses" => "UserController@edit",'middleware'=>['needsPermission'], 'shield' => 'users.edit']);
-        Route::delete('/{user}', ["as"=>"users.destroy","uses" => "UserController@destroy",'middleware'=>['needsPermission'], 'shield' => 'users.destroy']);
-        Route::get('/change_password/{user}', ["as"=>"users.change_password","uses" => "UserController@changePassword",'middleware'=>['needsPermission'], 'shield' => 'users.change_password']);
-        Route::put('/update_password/{user}', ["as"=>"users.update_password","uses" => "UserController@updatePassword",'middleware'=>['needsPermission'], 'shield' => 'users.change_password']);
+        Route::get('/{user}/edit', ["as"=>"users.edit","uses" => "UserController@edit",'middleware'=>['permission:users.edit']]);
+        Route::delete('/{user}', ["as"=>"users.destroy","uses" => "UserController@destroy",'middleware'=>['permission:users.destroy']]);
+        Route::get('/change_password/{user}', ["as"=>"users.change_password","uses" => "UserController@changePassword",'middleware'=>['permission:users.change_password']]);
+        Route::put('/update_password/{user}', ["as"=>"users.update_password","uses" => "UserController@updatePassword",'middleware'=>['permission:users.change_password']]);
     });
 
     //GROUP USERS
     Route::group(['prefix' => 'group_users'], function () {
-        Route::get('/', ["as"=>"group_users.index","uses" => "GroupUserController@index",'middleware'=>['needsPermission'], 'shield' => 'group_user.index']);
+        Route::get('/', ["as"=>"group_users.index","uses" => "GroupUserController@index",'middleware'=>['permission:group_user.index']]);
     });
 
     //DEPARTMENTS
@@ -143,13 +143,13 @@ Route::group(['prefix' => 'admin','middleware'=>['auth','RedirectIfEmpresa', "lo
 //    Route::resource('certificateCategories', 'CertificateCategoryController');
     Route::group(['prefix' => 'certificateCategories'], function () {
 
-        Route::get('/', ["as"=>"certificateCategories.index","uses" => "CertificateCategoryController@index",'middleware'=>['needsPermission'], 'shield' => 'certificateCategories.index']);
+        Route::get('/', ["as"=>"certificateCategories.index","uses" => "CertificateCategoryController@index",'middleware'=>['permission:certificateCategories.index']]);
         Route::post('/', ["as"=>"certificateCategories.store","uses" => "CertificateCategoryController@store"]);
-        Route::get('/create', ["as"=>"certificateCategories.create","uses" => "CertificateCategoryController@create",'middleware'=>['needsPermission'], 'shield' => 'certificateCategories.create']);
-        Route::get('/{certificateCategories}', ["as"=>"certificateCategories.show","uses" => "CertificateCategoryController@show",'middleware'=>['needsPermission'], 'shield' => 'certificateCategories.show']);
+        Route::get('/create', ["as"=>"certificateCategories.create","uses" => "CertificateCategoryController@create",'middleware'=>['permission:certificateCategories.create']]);
+        Route::get('/{certificateCategories}', ["as"=>"certificateCategories.show","uses" => "CertificateCategoryController@show",'middleware'=>['permission:certificateCategories.show']]);
         Route::put('/{certificateCategories}', ["as"=>"certificateCategories.update","uses" => "CertificateCategoryController@update"]);
-        Route::get('/{certificateCategories}/edit', ["as"=>"certificateCategories.edit","uses" => "CertificateCategoryController@edit",'middleware'=>['needsPermission'], 'shield' => 'certificateCategories.edit']);
-        Route::delete('/{certificateCategories}', ["as"=>"certificateCategories.destroy","uses" => "CertificateCategoryController@destroy",'middleware'=>['needsPermission'], 'shield' => 'certificateCategories.destroy']);
+        Route::get('/{certificateCategories}/edit', ["as"=>"certificateCategories.edit","uses" => "CertificateCategoryController@edit",'middleware'=>['permission:certificateCategories.edit']]);
+        Route::delete('/{certificateCategories}', ["as"=>"certificateCategories.destroy","uses" => "CertificateCategoryController@destroy",'middleware'=>['permission:certificateCategories.destroy']]);
 
     });
 
@@ -203,46 +203,46 @@ Route::group(['prefix' => 'sysCompany','middleware'=>['auth', 'RedirectIfEmpresa
     Route::get('/complementRegister', ["as"=>"sysCompany.complementRegister","uses" => "SysCompanyController@complementRegister"]);
     Route::post('/complementRegister', ["as"=>"sysCompany.storeComplementRegister","uses" => "SysCompanyController@storeComplementRegister"]);
 
-    Route::get('/', ["as"=>"sysCompany.index","uses" => "SysCompanyController@index",'middleware'=>['needsPermission'], 'shield' => 'sysCompany.index']);
-    Route::put('/photo-store/{company}', ["as"=>"sysCompany.photoStore","uses" => "SysCompanyController@photoStore",'middleware'=>['needsPermission'], 'shield' => 'sysCompany.index']);
+    Route::get('/', ["as"=>"sysCompany.index","uses" => "SysCompanyController@index",'middleware'=>['permission:sysCompany.index']]);
+    Route::put('/photo-store/{company}', ["as"=>"sysCompany.photoStore","uses" => "SysCompanyController@photoStore",'middleware'=>['permission:sysCompany.index']]);
 
     //PRODUCTS
     Route::group(['prefix' => 'announcements'], function () {
-        Route::get('/', ["as"=>"sysCompany.companyAnnouncements.indexByCompany","uses" => "CompanyAnnouncementController@indexByCompany",'middleware'=>['needsPermission']]);
-        Route::post('/', ["as"=>"sysCompany.companyAnnouncements.store","uses" => "CompanyAnnouncementController@store",'middleware'=>['needsPermission']]);
-        Route::get('/create', ["as"=>"sysCompany.companyAnnouncements.create","uses" => "CompanyAnnouncementController@create",'middleware'=>['needsPermission']]);
-        Route::get('/{announcement}', ["as"=>"sysCompany.companyAnnouncements.show","uses" => "CompanyAnnouncementController@show",'middleware'=>['needsPermission']]);
+        Route::get('/', ["as"=>"sysCompany.companyAnnouncements.indexByCompany","uses" => "CompanyAnnouncementController@indexByCompany",'middleware'=>['permission:sysCompany.companyAnnouncements.indexByCompany']]);
+        Route::post('/', ["as"=>"sysCompany.companyAnnouncements.store","uses" => "CompanyAnnouncementController@store",'middleware'=>['permission:sysCompany.companyAnnouncements.create']]);
+        Route::get('/create', ["as"=>"sysCompany.companyAnnouncements.create","uses" => "CompanyAnnouncementController@create",'middleware'=>['permission:sysCompany.companyAnnouncements.create']]);
+        Route::get('/{announcement}', ["as"=>"sysCompany.companyAnnouncements.show","uses" => "CompanyAnnouncementController@show",'middleware'=>['permission:sysCompany.companyAnnouncements.show']]);
         Route::patch('/{announcement}', ["as"=>"sysCompany.companyAnnouncements.update","uses" => "CompanyAnnouncementController@update"]);
-        Route::get('/{announcement}/edit', ["as"=>"sysCompany.companyAnnouncements.edit","uses" => "CompanyAnnouncementController@edit",'middleware'=>['needsPermission']]);
-        Route::delete('/{announcement}', ["as"=>"sysCompany.companyAnnouncements.destroy","uses" => "CompanyAnnouncementController@destroy",'middleware'=>['needsPermission']]);
-        Route::get('/getProductsByCategory_ajax/{id}', ["as"=>"sysCompany.companyAnnouncements.getProductsByCategory_ajax","uses" => "CompanyAnnouncementController@getProductByCategoryAjax",'middleware'=>['needsPermission']]);
+        Route::get('/{announcement}/edit', ["as"=>"sysCompany.companyAnnouncements.edit","uses" => "CompanyAnnouncementController@edit",'middleware'=>['permission:sysCompany.companyAnnouncements.show']]);
+        Route::delete('/{announcement}', ["as"=>"sysCompany.companyAnnouncements.destroy","uses" => "CompanyAnnouncementController@destroy",'middleware'=>['permission:sysCompany.companyAnnouncements.destroy']]);
+        Route::get('/getProductsByCategory_ajax/{id}', ["as"=>"sysCompany.companyAnnouncements.getProductsByCategory_ajax","uses" => "CompanyAnnouncementController@getProductByCategoryAjax",'middleware'=>['permission:sysCompany.companyAnnouncements.indexByCompany']]);
     });
 
 
     //COMPANY
     Route::group(['prefix' => 'company'], function () {
-        Route::get('/', ["as"=>"sysCompany.company.index","uses" => "CompanyController@indexMyCompany",'middleware'=>['needsPermission'], 'shield' => 'companies.indexMyCompany']);
-        Route::get('/change_password/{user}', ["as"=>"sysCompany.company.users.change_password","uses" => "CompanyController@changePassword",'middleware'=>['needsPermission'], 'shield' => 'companies.changePassword']);
-        Route::put('/update_password/{user}', ["as"=>"sysCompany.company.users.update_password","uses" => "CompanyController@updatePassword",'middleware'=>['needsPermission'], 'shield' => 'companies.changePassword']);
+        Route::get('/', ["as"=>"sysCompany.company.index","uses" => "CompanyController@indexMyCompany",'middleware'=>['permission:companies.indexMyCompany']]);
+        Route::get('/change_password/{user}', ["as"=>"sysCompany.company.users.change_password","uses" => "CompanyController@changePassword",'middleware'=>['permission:companies.changePassword']]);
+        Route::put('/update_password/{user}', ["as"=>"sysCompany.company.users.update_password","uses" => "CompanyController@updatePassword",'middleware'=>['permission:companies.changePassword']]);
 
         Route::group(['prefix' => 'companyPartners'], function () {
-            Route::get('/', ["as"=>"companyPartners.index","uses" => "CompanyPartnerController@index"])->middleware(['needsPermission:companyPartners.index']);
-            Route::post('/', ["as"=>"companyPartners.store","uses" => "CompanyPartnerController@store"])->middleware(['needsPermission:companyPartners.store']);;
-            Route::get('/create', ["as"=>"companyPartners.create","uses" => "CompanyPartnerController@create"])->middleware(['needsPermission:companyPartners.create']);;
-            Route::get('/{companyPartners}', ["as"=>"companyPartners.show","uses" => "CompanyPartnerController@show"])->middleware(['needsPermission:companyPartners.show']);;
-            Route::patch('/{companyPartners}', ["as"=>"companyPartners.update","uses" => "CompanyPartnerController@update"])->middleware(['needsPermission:companyPartners.update']);;
-            Route::get('/{companyPartners}/edit', ["as"=>"companyPartners.edit","uses" => "CompanyPartnerController@edit"])->middleware(['needsPermission:companyPartners.edit']);;
-            Route::delete('/{companyPartners}', ["as"=>"companyPartners.destroy","uses" => "CompanyPartnerController@destroy"])->middleware(['needsPermission:companyPartners.destroy']);;
+            Route::get('/', ["as"=>"companyPartners.index","uses" => "CompanyPartnerController@index"])->middleware(['permission:companyPartners.index']);
+            Route::post('/', ["as"=>"companyPartners.store","uses" => "CompanyPartnerController@store"])->middleware(['permission:companyPartners.store']);;
+            Route::get('/create', ["as"=>"companyPartners.create","uses" => "CompanyPartnerController@create"])->middleware(['permission:companyPartners.create']);;
+            Route::get('/{companyPartners}', ["as"=>"companyPartners.show","uses" => "CompanyPartnerController@show"])->middleware(['permission:companyPartners.show']);;
+            Route::patch('/{companyPartners}', ["as"=>"companyPartners.update","uses" => "CompanyPartnerController@update"])->middleware(['permission:companyPartners.update']);;
+            Route::get('/{companyPartners}/edit', ["as"=>"companyPartners.edit","uses" => "CompanyPartnerController@edit"])->middleware(['permission:companyPartners.edit']);;
+            Route::delete('/{companyPartners}', ["as"=>"companyPartners.destroy","uses" => "CompanyPartnerController@destroy"])->middleware(['permission:companyPartners.destroy']);;
         });
 
         Route::group(['prefix' => 'companyRepresentatives'], function () {
-            Route::get('/', ["as"=>"companyRepresentatives.index","uses" => "CompanyRepresentativeController@index"])->middleware(['needsPermission:companyRepresentatives.index']);
-            Route::post('/', ["as"=>"companyRepresentatives.store","uses" => "CompanyRepresentativeController@store"])->middleware(['needsPermission:companyRepresentatives.store']);;
-            Route::get('/create', ["as"=>"companyRepresentatives.create","uses" => "CompanyRepresentativeController@create"])->middleware(['needsPermission:companyRepresentatives.create']);;
-            Route::get('/{companyRepresentatives}', ["as"=>"companyRepresentatives.show","uses" => "CompanyRepresentativeController@show"])->middleware(['needsPermission:companyRepresentatives.show']);;
-            Route::patch('/{companyRepresentatives}', ["as"=>"companyRepresentatives.update","uses" => "CompanyRepresentativeController@update"])->middleware(['needsPermission:companyRepresentatives.update']);;
-            Route::get('/{companyRepresentatives}/edit', ["as"=>"companyRepresentatives.edit","uses" => "CompanyRepresentativeController@edit"])->middleware(['needsPermission:companyRepresentatives.edit']);;
-            Route::delete('/{companyRepresentatives}', ["as"=>"companyRepresentatives.destroy","uses" => "CompanyRepresentativeController@destroy"])->middleware(['needsPermission:companyRepresentatives.destroy']);;
+            Route::get('/', ["as"=>"companyRepresentatives.index","uses" => "CompanyRepresentativeController@index"])->middleware(['permission:companyRepresentatives.index']);
+            Route::post('/', ["as"=>"companyRepresentatives.store","uses" => "CompanyRepresentativeController@store"])->middleware(['permission:companyRepresentatives.store']);;
+            Route::get('/create', ["as"=>"companyRepresentatives.create","uses" => "CompanyRepresentativeController@create"])->middleware(['permission:companyRepresentatives.create']);;
+            Route::get('/{companyRepresentatives}', ["as"=>"companyRepresentatives.show","uses" => "CompanyRepresentativeController@show"])->middleware(['permission:companyRepresentatives.show']);;
+            Route::patch('/{companyRepresentatives}', ["as"=>"companyRepresentatives.update","uses" => "CompanyRepresentativeController@update"])->middleware(['permission:companyRepresentatives.update']);;
+            Route::get('/{companyRepresentatives}/edit', ["as"=>"companyRepresentatives.edit","uses" => "CompanyRepresentativeController@edit"])->middleware(['permission:companyRepresentatives.edit']);;
+            Route::delete('/{companyRepresentatives}', ["as"=>"companyRepresentatives.destroy","uses" => "CompanyRepresentativeController@destroy"])->middleware(['permission:companyRepresentatives.destroy']);;
         });
 
 //        Route::resource('companyRepresentatives', 'CompanyRepresentativeController');

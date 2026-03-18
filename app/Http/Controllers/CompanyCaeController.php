@@ -73,7 +73,7 @@ class CompanyCaeController extends AppBaseController
      */
     public function show($id)
     {
-        $companyCae = $this->companyCaeRepository->findWithoutFail($id);
+        $companyCae = $this->companyCaeRepository->find($id);
 
         if (empty($companyCae)) {
             Flash::error('Company Cae not found');
@@ -93,7 +93,7 @@ class CompanyCaeController extends AppBaseController
      */
     public function edit($id)
     {
-        $companyCae = $this->companyCaeRepository->findWithoutFail($id);
+        $companyCae = $this->companyCaeRepository->find($id);
 
         if (empty($companyCae)) {
             Flash::error('Company Cae not found');
@@ -114,7 +114,7 @@ class CompanyCaeController extends AppBaseController
      */
     public function update($id, UpdateCompanyCaeRequest $request)
     {
-        $companyCae = $this->companyCaeRepository->findWithoutFail($id);
+        $companyCae = $this->companyCaeRepository->find($id);
 
         if (empty($companyCae)) {
             Flash::error('Company Cae not found');
@@ -138,7 +138,7 @@ class CompanyCaeController extends AppBaseController
      */
     public function destroy($id)
     {
-        $companyCae = $this->companyCaeRepository->findWithoutFail($id);
+        $companyCae = $this->companyCaeRepository->find($id);
 
         if (empty($companyCae)) {
             Flash::error('Company Cae not found');

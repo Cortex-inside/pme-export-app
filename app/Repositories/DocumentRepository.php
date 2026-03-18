@@ -3,7 +3,7 @@
 namespace PMEexport\Repositories;
 
 use PMEexport\Models\Document;
-use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class DocumentRepository

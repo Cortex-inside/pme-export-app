@@ -13,15 +13,15 @@
         </div>
         <div class="sidenav-divider mt-0"></div>
 
-        @is('empresa')
+        @hasrole('empresa')
             @include('layouts.admin.menu_empresa')
-        @endis
-        @is('empresa_estrangeira')
+        @endhasrole
+        @hasrole('empresa_estrangeira')
             @include('layouts.admin.menu_empresa_estrangeira')
-        @endis
-        @is(['superuser','admin','departamento','informatica','core','diretor'])
+        @endhasrole
+        @hasanyrole('superuser|admin|departamento|informatica|core|diretor')
             @include('layouts.admin.menu_admin')
-        @endis
+        @endhasanyrole
 
     </div>
     <!-- [ Layout sidenav ] End -->

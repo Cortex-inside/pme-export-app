@@ -2,7 +2,6 @@
 
 namespace PMEexport\Criteria;
 
-use Artesaos\Defender\Facades\Defender;
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
@@ -23,21 +22,12 @@ class UsersEmpresaSelectCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        if(Defender::is(['admin'])) {
-
-            $model = $model
-                ->selectRaw('users.*')
-                ->join('role_user', 'users.id', '=', 'role_user.user_id')
-                ->whereIn('role_user.role_id', [7, 8])
-                ->orderBy("users.id", "desc");
-
-        } else {
-            $model = $model
-                ->selectRaw('users.*')
-                ->join('role_user', 'users.id', '=', 'role_user.user_id')
-                ->whereIn('role_user.role_id', [7, 8])
-                ->orderBy("users.id", "desc");
-        }
+        $model = $model
+            ->selectRaw('users.*')
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->where('model_has_roles.model_type', \PMEexport\Models\User::class)
+            ->whereIn('model_has_roles.role_id', [7, 8])
+            ->orderBy("users.id", "desc");
 
         return $model;
     }

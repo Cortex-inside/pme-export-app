@@ -9,11 +9,10 @@
 namespace PMEexport\Services;
 
 
-use Artesaos\Defender\Defender;
-use Artesaos\Defender\Permission;
-use Artesaos\Defender\Role;
 use Laracasts\Flash\Flash;
 use PMEexport\Repositories\UserRepository;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RoleService
 {
@@ -27,19 +26,14 @@ class RoleService
      */
     private $permission;
     /**
-     * @var Defender
-     */
-    private $defender;
-    /**
      * @var UserRepository
      */
     private $userRepository;
 
-    public function __construct(Role $role, Permission $permission, Defender $defender, UserRepository $userRepository)
+    public function __construct(Role $role, Permission $permission, UserRepository $userRepository)
     {
         $this->role = $role;
         $this->permission = $permission;
-        $this->defender = $defender;
         $this->userRepository = $userRepository;
     }
 
@@ -57,25 +51,17 @@ class RoleService
     public function permissionUpdate($request, $id)
     {
         $data = $request->all();
-//        $user = $this->userRepository->find($id);
-        $role = $this->defender->findRoleById($id);
+        $role = Role::findById($id);
         unset($data["_method"]);
         unset($data["_token"]);
 
         $permissions = array();
-        $notPermissions = array();
         if(count($data) > 0){
                 foreach ($data as $key=>$value){
-                    $permissions[$key] = ['value' => $value];
-                    if($value == "0"){
-                        $notPermissions[] = $key;
-                        unset($permissions[$key]);
+                    if($value != "0"){
+                        $permissions[] = $key;
                     }
                 }
-//            dd($notPermissions);
-//            $user->detachPermission($notPermissions);
-            $role->detachPermission($notPermissions);
-//            $user->syncPermissions($permissions);
             $role->syncPermissions($permissions);
 
             Flash::success('Item atualizado com sucesso.');

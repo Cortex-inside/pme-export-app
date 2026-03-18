@@ -73,7 +73,7 @@ class CompanyCertificateMessageController extends AppBaseController
      */
     public function show($id)
     {
-        $companyCertificateMessage = $this->companyCertificateMessageRepository->findWithoutFail($id);
+        $companyCertificateMessage = $this->companyCertificateMessageRepository->find($id);
 
         if (empty($companyCertificateMessage)) {
             Flash::error('Company Certificate Message not found');
@@ -93,7 +93,7 @@ class CompanyCertificateMessageController extends AppBaseController
      */
     public function edit($id)
     {
-        $companyCertificateMessage = $this->companyCertificateMessageRepository->findWithoutFail($id);
+        $companyCertificateMessage = $this->companyCertificateMessageRepository->find($id);
 
         if (empty($companyCertificateMessage)) {
             Flash::error('Company Certificate Message not found');
@@ -114,7 +114,7 @@ class CompanyCertificateMessageController extends AppBaseController
      */
     public function update($id, UpdateCompanyCertificateMessageRequest $request)
     {
-        $companyCertificateMessage = $this->companyCertificateMessageRepository->findWithoutFail($id);
+        $companyCertificateMessage = $this->companyCertificateMessageRepository->find($id);
 
         if (empty($companyCertificateMessage)) {
             Flash::error('Company Certificate Message not found');
@@ -138,7 +138,7 @@ class CompanyCertificateMessageController extends AppBaseController
      */
     public function destroy($id)
     {
-        $companyCertificateMessage = $this->companyCertificateMessageRepository->findWithoutFail($id);
+        $companyCertificateMessage = $this->companyCertificateMessageRepository->find($id);
 
         if (empty($companyCertificateMessage)) {
             Flash::error('Company Certificate Message not found');

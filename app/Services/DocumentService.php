@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Guilherme Dias
@@ -31,6 +32,4 @@ class DocumentService
     {
         $this->documentRepository->create($document);
     }
-
-
 }

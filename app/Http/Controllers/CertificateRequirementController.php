@@ -73,7 +73,7 @@ class CertificateRequirementController extends AppBaseController
      */
     public function show($id)
     {
-        $certificateRequirement = $this->certificateRequirementRepository->findWithoutFail($id);
+        $certificateRequirement = $this->certificateRequirementRepository->find($id);
 
         if (empty($certificateRequirement)) {
             Flash::error('Certificate Requirement not found');
@@ -93,7 +93,7 @@ class CertificateRequirementController extends AppBaseController
      */
     public function edit($id)
     {
-        $certificateRequirement = $this->certificateRequirementRepository->findWithoutFail($id);
+        $certificateRequirement = $this->certificateRequirementRepository->find($id);
 
         if (empty($certificateRequirement)) {
             Flash::error('Certificate Requirement not found');
@@ -114,7 +114,7 @@ class CertificateRequirementController extends AppBaseController
      */
     public function update($id, UpdateCertificateRequirementRequest $request)
     {
-        $certificateRequirement = $this->certificateRequirementRepository->findWithoutFail($id);
+        $certificateRequirement = $this->certificateRequirementRepository->find($id);
 
         if (empty($certificateRequirement)) {
             Flash::error('Certificate Requirement not found');
@@ -138,7 +138,7 @@ class CertificateRequirementController extends AppBaseController
      */
     public function destroy($id)
     {
-        $certificateRequirement = $this->certificateRequirementRepository->findWithoutFail($id);
+        $certificateRequirement = $this->certificateRequirementRepository->find($id);
 
         if (empty($certificateRequirement)) {
             Flash::error('Certificate Requirement not found');

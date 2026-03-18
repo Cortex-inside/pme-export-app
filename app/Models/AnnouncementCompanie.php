@@ -2,7 +2,7 @@
 
 namespace PMEexport\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use PMEexport\Traits\Uuids;
 
 class AnnouncementCompanie extends Model

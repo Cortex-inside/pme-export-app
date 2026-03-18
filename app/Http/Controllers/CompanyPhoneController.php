@@ -73,7 +73,7 @@ class CompanyPhoneController extends AppBaseController
      */
     public function show($id)
     {
-        $companyPhone = $this->companyPhoneRepository->findWithoutFail($id);
+        $companyPhone = $this->companyPhoneRepository->find($id);
 
         if (empty($companyPhone)) {
             Flash::error('Company Phone not found');
@@ -93,7 +93,7 @@ class CompanyPhoneController extends AppBaseController
      */
     public function edit($id)
     {
-        $companyPhone = $this->companyPhoneRepository->findWithoutFail($id);
+        $companyPhone = $this->companyPhoneRepository->find($id);
 
         if (empty($companyPhone)) {
             Flash::error('Company Phone not found');
@@ -114,7 +114,7 @@ class CompanyPhoneController extends AppBaseController
      */
     public function update($id, UpdateCompanyPhoneRequest $request)
     {
-        $companyPhone = $this->companyPhoneRepository->findWithoutFail($id);
+        $companyPhone = $this->companyPhoneRepository->find($id);
 
         if (empty($companyPhone)) {
             Flash::error('Company Phone not found');
@@ -138,7 +138,7 @@ class CompanyPhoneController extends AppBaseController
      */
     public function destroy($id)
     {
-        $companyPhone = $this->companyPhoneRepository->findWithoutFail($id);
+        $companyPhone = $this->companyPhoneRepository->find($id);
 
         if (empty($companyPhone)) {
             Flash::error('Company Phone not found');

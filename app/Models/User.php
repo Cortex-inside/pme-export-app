@@ -2,7 +2,7 @@
 
 namespace PMEexport\Models;
 
-use Artesaos\Defender\Traits\HasDefender;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +12,7 @@ use PMEexport\Traits\Uuids;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasDefender, Uuids, HasApiTokens, SoftDeletes;
+    use Notifiable, HasRoles, Uuids, HasApiTokens, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -56,10 +56,6 @@ class User extends Authenticatable
         } else {
             return ucwords(strtolower($this->roles[0]->name));
         }
-    }
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'role_user');
     }
 
     /**

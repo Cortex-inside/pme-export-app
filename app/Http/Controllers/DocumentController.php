@@ -73,7 +73,7 @@ class DocumentController extends AppBaseController
      */
     public function show($id)
     {
-        $document = $this->documentRepository->findWithoutFail($id);
+        $document = $this->documentRepository->find($id);
 
         if (empty($document)) {
             Flash::error('Document not found');
@@ -93,7 +93,7 @@ class DocumentController extends AppBaseController
      */
     public function edit($id)
     {
-        $document = $this->documentRepository->findWithoutFail($id);
+        $document = $this->documentRepository->find($id);
 
         if (empty($document)) {
             Flash::error('Document not found');
@@ -114,7 +114,7 @@ class DocumentController extends AppBaseController
      */
     public function update($id, UpdateDocumentRequest $request)
     {
-        $document = $this->documentRepository->findWithoutFail($id);
+        $document = $this->documentRepository->find($id);
 
         if (empty($document)) {
             Flash::error('Document not found');
@@ -138,7 +138,7 @@ class DocumentController extends AppBaseController
      */
     public function destroy($id)
     {
-        $document = $this->documentRepository->findWithoutFail($id);
+        $document = $this->documentRepository->find($id);
 
         if (empty($document)) {
             Flash::error('Document not found');

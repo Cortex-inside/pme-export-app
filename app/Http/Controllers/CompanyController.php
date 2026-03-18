@@ -2,7 +2,6 @@
 
 namespace PMEexport\Http\Controllers;
 
-use Artesaos\Defender\Facades\Defender;
 use PMEexport\Criteria\CompanyByStatusCriteria;
 use PMEexport\Criteria\CompanyEmpresaCriteria;
 use PMEexport\Http\Requests\CreateCompanyRequest;
@@ -103,7 +102,7 @@ class CompanyController extends AppBaseController
     public function disapprove(Request $request)
     {
         $input = $request->all();
-        $company = $this->companyRepository->findWithoutFail($input['company_id']);
+        $company = $this->companyRepository->find($input['company_id']);
 
         if (empty($company)) {
             Flash::error('Empresa n�o encontrada.');

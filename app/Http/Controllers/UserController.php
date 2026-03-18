@@ -3,8 +3,8 @@
 namespace PMEexport\Http\Controllers;
 
 use PMEexport\Http\Requests\UserStoreRequest;
-use Artesaos\Defender\Facades\Defender;
 use Laracasts\Flash\Flash;
+use Spatie\Permission\Models\Role;
 use PMEexport\Http\Requests\CreateCaeRequest;
 use PMEexport\Http\Requests\UpdateCaeRequest;
 use PMEexport\Http\Requests\UserUpdateRequest;
@@ -64,7 +64,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        $roles = Defender::rolesList();
+        $roles = Role::all()->pluck('name', 'id');
         $listDepartments = $this->departmentRepository->all();
         $user = new User();
         $selectedRoles = [];
@@ -121,7 +121,7 @@ class UserController extends AppBaseController
         }
 
 
-        $roles = Defender::rolesList();
+        $roles = Role::all()->pluck('name', 'id');
 
         $selectedRoles = [];
         foreach($user->roles as $role) {
@@ -168,7 +168,7 @@ class UserController extends AppBaseController
 
     public function changePassword(User $user)
     {
-        $roles = Defender::rolesList();
+        $roles = Role::all()->pluck('name', 'id');
         return view('users.change_password', compact('user','roles'));
     }
 

@@ -22,18 +22,18 @@
         <!-- Sidebar Menu -->
 
         <ul class="sidebar-menu" data-widget="tree">
-            @is('empresa')
+            @hasrole('empresa')
                 @include('layouts.menu_empresa')
-            @endis
-            @is('empresa_estrangeira')
+            @endhasrole
+            @hasrole('empresa_estrangeira')
                 @include('layouts.menu_empresa_estrangeira')
-            @endis
-            @is(['superuser','admin','departamento','informatica','core','diretor'])
+            @endhasrole
+            @hasanyrole('superuser|admin|departamento|informatica|core|diretor')
                 @include('layouts.menu_admin')
-            @endis
-            {{--@is('superuser')--}}
+            @endhasanyrole
+            {{--@hasrole('superuser')--}}
                 {{--@include('layouts.menu')--}}
-            {{--@endis--}}
+            {{--@endhasrole--}}
         </ul>
         <!-- /.sidebar-menu -->
     </section>

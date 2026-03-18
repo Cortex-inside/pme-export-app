@@ -2,8 +2,8 @@
 
 namespace PMEexport\Http\Controllers\Auth;
 
-use Artesaos\Defender\Facades\Defender;
 use PMEexport\Models\Company;
+use Spatie\Permission\Models\Role;
 use PMEexport\Models\Country;
 use PMEexport\Models\District;
 use PMEexport\Models\User;
@@ -141,12 +141,12 @@ class RegisterController extends Controller
         ]);
 
         if($data["perfil"] == 1) {
-            $role = Defender::findRole('empresa');
+            $role = Role::findByName('empresa');
         }
         if($data["perfil"] == 2) {
-            $role = Defender::findRole('empresa_estrangeira');
+            $role = Role::findByName('empresa_estrangeira');
         }
-        $user->attachRole($role);
+        $user->assignRole($role);
 
         return $user;
 

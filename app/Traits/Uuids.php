@@ -8,7 +8,7 @@
 
 namespace PMEexport\Traits;
 
-use Webpatser\Uuid\Uuid;
+use Illuminate\Support\Str;
 
 trait Uuids
 {
@@ -21,7 +21,7 @@ trait Uuids
         parent::boot();
 
         static::creating(function ($model) {
-            $model->uuid = Uuid::generate()->string;
+            $model->uuid = (string) Str::uuid();
         });
     }
 }

@@ -144,7 +144,7 @@ class CertificateController extends AppBaseController
      */
     public function show(Certificate $certificate)
     {
-//        $certificate = $this->certificateRepository->findWithoutFail($id);
+//        $certificate = $this->certificateRepository->find($id);
 
         if (empty($certificate)) {
             Flash::error('Certificado não encontrado');
@@ -164,7 +164,7 @@ class CertificateController extends AppBaseController
      */
     public function edit(Certificate $certificate)
     {
-//        $certificate = $this->certificateRepository->findWithoutFail($id);
+//        $certificate = $this->certificateRepository->find($id);
 
         if (empty($certificate)) {
             Flash::error('Certificado não encontrado');
@@ -196,7 +196,7 @@ class CertificateController extends AppBaseController
      */
     public function update(Certificate $certificate, UpdateCertificateRequest $request)
     {
-//        $certificate = $this->certificateRepository->findWithoutFail($id);
+//        $certificate = $this->certificateRepository->find($id);
 
         if (empty($certificate)) {
             Flash::error('Certificado não encontrado');
@@ -240,7 +240,7 @@ class CertificateController extends AppBaseController
      */
     public function destroy(Certificate $certificate)
     {
-//        $certificate = $this->certificateRepository->findWithoutFail($id);
+//        $certificate = $this->certificateRepository->find($id);
 
         if (empty($certificate)) {
             Flash::error('Certificado não encontrado');

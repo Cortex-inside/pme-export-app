@@ -3,39 +3,22 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDefenderPermissionRoleTable extends Migration
+// Replaced Defender permission_role with Spatie role_has_permissions
+return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
     {
-        Schema::create(config('defender.permission_role_table', 'permission_role'), function (Blueprint $table) {
-            $table->unsignedInteger(config('defender.permission_key', 'permission_id'))->index();
-            $table->foreign(config('defender.permission_key', 'permission_id'))->references('id')
-                  ->on(config('defender.permission_table', 'permissions'))
-                  ->onDelete('cascade');
-
-            $table->unsignedInteger(config('defender.role_key', 'role_id'))->index();
-            $table->foreign(config('defender.role_key', 'role_id'))->references('id')
-                  ->on(config('defender.role_table', 'roles'))
-                  ->onDelete('cascade');
-
-            $table->tinyInteger('value')->default(-1);
-            $table->timestamp('expires')->nullable();
+        Schema::create('role_has_permissions', function (Blueprint $table) {
+            $table->unsignedBigInteger('permission_id');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->primary(['permission_id', 'role_id']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
-        Schema::table(config('defender.permission_role_table', 'permission_role'), function (Blueprint $table) {
-            $table->dropForeign(config('defender.permission_role_table', 'permission_role').'_'.config('defender.permission_key', 'permission_id').'_foreign');
-            $table->dropForeign(config('defender.permission_role_table', 'permission_role').'_'.config('defender.role_key', 'role_id').'_foreign');
-        });
-
-        Schema::drop(config('defender.permission_role_table', 'permission_role'));
+        Schema::dropIfExists('role_has_permissions');
     }
-}
+};

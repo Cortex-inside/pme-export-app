@@ -158,11 +158,11 @@
                             <div class="col-xs">
                                 <ul class="footer__menu">
                                     @auth
-                                        @is(['empresa','empresa_estrangeira'])
+                                        @hasanyrole('empresa|empresa_estrangeira')
                                             <li><a href="{{route('exchange.index')}}">Minha conta</a></li>
                                         @else
                                             <li><a href="/admin">Minha conta</a></li>
-                                        @endis
+                                        @endhasanyrole
                                     @endauth
                                     <li><a href="#">Suporte</a></li>
                                     <li><a href="#">Perguntas Frequentes</a></li>
