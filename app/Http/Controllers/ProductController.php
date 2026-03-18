@@ -188,7 +188,7 @@ class ProductController extends AppBaseController
     {
         return $this->productService->getByCategoryAjax($id);
 
-        $product = $this->productRepository->findWithoutFail($id);
+        $product = $this->productRepository->find($id);
 
         if (empty($product)) {
             Flash::error('Produto not found');

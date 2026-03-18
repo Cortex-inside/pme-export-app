@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Guilherme Dias
@@ -17,7 +18,7 @@ use PMEexport\Criteria\ProductsByCategoryCriteria;
 use PMEexport\Repositories\AnnouncementDocumentRepository;
 use PMEexport\Repositories\ProductRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Webpatser\Uuid\Uuid;
+use Illuminate\Support\Str;
 
 class ProductService
 {

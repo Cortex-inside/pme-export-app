@@ -4,6 +4,6 @@
 @isset($subcopy)
 
 {!! strip_tags($subcopy) !!}
-@endisset
+@endhasroleset
 
 {!! strip_tags($footer) !!}

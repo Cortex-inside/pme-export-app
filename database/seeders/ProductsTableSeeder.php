@@ -1,5 +1,6 @@
 <?php
 
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 class ProductsTableSeeder extends Seeder
@@ -13,7 +14,7 @@ class ProductsTableSeeder extends Seeder
     {
 
 //            $arrayFinal = array(
-//                'uuid'          => Webpatser\Uuid\Uuid::generate(),
+//                'uuid'          => (string) \Illuminate\Support\Str::uuid(),
 //                'product_category_id'          =>1,
 //                'name'          => "Produto Teste 1",
 //                'description'          => "Descricao Produto Teste 1",

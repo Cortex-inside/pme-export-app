@@ -3,37 +3,23 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDefenderPermissionUserTable extends Migration
+// Replaced Defender permission_user with Spatie model_has_permissions
+return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
     {
-        Schema::create(config('defender.permission_user_table', 'permission_user'), function (Blueprint $table) {
-            $table->unsignedInteger('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on(config('auth.table', 'users'))->onDelete('cascade');
-
-            $table->unsignedInteger(config('defender.permission_key', 'permission_id'))->index();
-            $table->foreign(config('defender.permission_key', 'permission_id'))->references('id')
-                  ->on(config('defender.permission_table', 'permissions'))
-                  ->onDelete('cascade');
-
-            $table->tinyInteger('value')->default(-1);
-            $table->timestamp('expires')->nullable();
+        Schema::create('model_has_permissions', function (Blueprint $table) {
+            $table->unsignedBigInteger('permission_id');
+            $table->string('model_type');
+            $table->unsignedBigInteger('model_id');
+            $table->index(['model_id', 'model_type'], 'model_has_permissions_model_id_model_type_index');
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
+            $table->primary(['permission_id', 'model_id', 'model_type']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
-        Schema::table(config('defender.permission_user_table', 'permission_user'), function (Blueprint $table) {
-            $table->dropForeign(config('defender.permission_user_table', 'permission_user').'_user_id_foreign');
-            $table->dropForeign(config('defender.permission_user_table', 'permission_user').'_'.config('defender.permission_key', 'permission_id').'_foreign');
-        });
-
-        Schema::drop(config('defender.permission_user_table', 'permission_user'));
+        Schema::dropIfExists('model_has_permissions');
     }
-}
+};

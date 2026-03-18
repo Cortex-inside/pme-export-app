@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Guilherme Dias
@@ -39,7 +40,7 @@ class ExchangeService
         $this->companyAnnouncementRepository->pushCriteria(new AnunciosCriteria());
         $announcements = $this->companyAnnouncementRepository->all();
 
-        return view('exchange.index',compact('announcements'));
+        return view('exchange.index', compact('announcements'));
     }
     public function detailProduct($announcement)
     {

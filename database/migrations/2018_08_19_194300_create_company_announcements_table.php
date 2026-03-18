@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompanyAnnouncementsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -51,4 +51,4 @@ class CreateCompanyAnnouncementsTable extends Migration
     {
         Schema::dropIfExists('company_announcements');
     }
-}
+};

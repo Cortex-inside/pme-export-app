@@ -73,7 +73,7 @@ class CompanyEmailController extends AppBaseController
      */
     public function show($id)
     {
-        $companyEmail = $this->companyEmailRepository->findWithoutFail($id);
+        $companyEmail = $this->companyEmailRepository->find($id);
 
         if (empty($companyEmail)) {
             Flash::error('Company Email not found');
@@ -93,7 +93,7 @@ class CompanyEmailController extends AppBaseController
      */
     public function edit($id)
     {
-        $companyEmail = $this->companyEmailRepository->findWithoutFail($id);
+        $companyEmail = $this->companyEmailRepository->find($id);
 
         if (empty($companyEmail)) {
             Flash::error('Company Email not found');
@@ -114,7 +114,7 @@ class CompanyEmailController extends AppBaseController
      */
     public function update($id, UpdateCompanyEmailRequest $request)
     {
-        $companyEmail = $this->companyEmailRepository->findWithoutFail($id);
+        $companyEmail = $this->companyEmailRepository->find($id);
 
         if (empty($companyEmail)) {
             Flash::error('Company Email not found');
@@ -138,7 +138,7 @@ class CompanyEmailController extends AppBaseController
      */
     public function destroy($id)
     {
-        $companyEmail = $this->companyEmailRepository->findWithoutFail($id);
+        $companyEmail = $this->companyEmailRepository->find($id);
 
         if (empty($companyEmail)) {
             Flash::error('Company Email not found');

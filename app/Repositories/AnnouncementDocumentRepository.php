@@ -3,7 +3,7 @@
 namespace PMEexport\Repositories;
 
 use PMEexport\Models\Document;
-use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
 use PMEexport\Models\AnnouncementDocument;
 
 /**
@@ -14,7 +14,7 @@ use PMEexport\Models\AnnouncementDocument;
  * @method Document findWithoutFail($id, $columns = ['*'])
  * @method Document find($id, $columns = ['*'])
  * @method Document first($columns = ['*'])
-*/
+ */
 class AnnouncementDocumentRepository extends BaseRepository
 {
     /**

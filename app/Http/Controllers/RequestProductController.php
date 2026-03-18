@@ -73,7 +73,7 @@ class RequestProductController extends AppBaseController
      */
     public function show($id)
     {
-        $requestProduct = $this->requestProductRepository->findWithoutFail($id);
+        $requestProduct = $this->requestProductRepository->find($id);
 
         if (empty($requestProduct)) {
             Flash::error('Request Product not found');
@@ -93,7 +93,7 @@ class RequestProductController extends AppBaseController
      */
     public function edit($id)
     {
-        $requestProduct = $this->requestProductRepository->findWithoutFail($id);
+        $requestProduct = $this->requestProductRepository->find($id);
 
         if (empty($requestProduct)) {
             Flash::error('Request Product not found');
@@ -114,7 +114,7 @@ class RequestProductController extends AppBaseController
      */
     public function update($id, UpdateRequestProductRequest $request)
     {
-        $requestProduct = $this->requestProductRepository->findWithoutFail($id);
+        $requestProduct = $this->requestProductRepository->find($id);
 
         if (empty($requestProduct)) {
             Flash::error('Request Product not found');
@@ -138,7 +138,7 @@ class RequestProductController extends AppBaseController
      */
     public function destroy($id)
     {
-        $requestProduct = $this->requestProductRepository->findWithoutFail($id);
+        $requestProduct = $this->requestProductRepository->find($id);
 
         if (empty($requestProduct)) {
             Flash::error('Request Product not found');

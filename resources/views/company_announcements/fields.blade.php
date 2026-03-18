@@ -55,13 +55,13 @@
                     {{--<option value="2">Compra fechada sobre período</option>--}}
                     {{--<option value="3">Compra aguardando proposta</option>--}}
                     {{--<option value="4">Compra aguardando proposta sobre período</option>--}}
-                    @is('empresa')
+                    @hasrole('empresa')
                     <option value="5">Venda</option>
                     {{--<option value="5">Venda fechada</option>--}}
                     {{--<option value="6">Venda fechada sobre período</option>--}}
                     {{--<option value="7">Venda aguardando proposta</option>--}}
                     {{--<option value="8">Venda aguardando proposta sobre período</option>--}}
-                    @endis
+                    @endhasrole
                 </select>
             </div>
         </div>

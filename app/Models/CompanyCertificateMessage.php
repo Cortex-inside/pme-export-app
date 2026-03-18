@@ -2,7 +2,7 @@
 
 namespace PMEexport\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use PMEexport\Traits\Uuids;
@@ -42,7 +42,6 @@ class CompanyCertificateMessage extends Model
     const UPDATED_AT = 'updated_at';
 
 
-    protected $dates = ['deleted_at'];
 
 
     public $fillable = [

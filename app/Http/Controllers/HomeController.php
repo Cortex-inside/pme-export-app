@@ -2,7 +2,6 @@
 
 namespace PMEexport\Http\Controllers;
 
-use Artesaos\Defender\Facades\Defender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,8 +27,8 @@ class HomeController extends Controller
     {
         $data = [];
 
-        if(Defender::hasRole("empresa") OR Defender::hasRole("empresa_estrangeira")) {
-            if(Defender::hasRole("empresa_estrangeira")){
+        if(auth()->user()->hasRole("empresa") OR auth()->user()->hasRole("empresa_estrangeira")) {
+            if(auth()->user()->hasRole("empresa_estrangeira")){
                 return redirect(route('exchange.index'));
             }
 

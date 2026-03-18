@@ -23,7 +23,7 @@
                                     {{ $certificate->description }}
                                 </div>
                                 <div class="text-right">
-                                    @is(['empresa_estrangeira','empresa'])
+                                    @hasanyrole('empresa_estrangeira|empresa')
 
                                         @if($checkCertificado)
                                             <a href="{!! route('sysCompany.certificates.showMyCertificates', [$checkCertificado->id]) !!}" class='btn btn-default btn-round'>
@@ -38,7 +38,7 @@
 
                                         @endif
 
-                                    @endis
+                                    @endhasanyrole
                                 </div>
                             </div>
                         </div>

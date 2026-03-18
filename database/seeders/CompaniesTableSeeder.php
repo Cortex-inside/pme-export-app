@@ -1,6 +1,7 @@
 <?php
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CompaniesTableSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class CompaniesTableSeeder extends Seeder
     {
 //        DB::table('companies')->insert([
 //            [
-//                'uuid'          => Webpatser\Uuid\Uuid::generate(),
+//                'uuid'          => (string) \Illuminate\Support\Str::uuid(),
 //                'name'          => 'Empresa Padrão',
 //                'district_id'   => 1,
 //                'nuit'          => 123,
@@ -25,22 +26,22 @@ class CompaniesTableSeeder extends Seeder
 
         DB::table('legal_situations')->insert([
             [
-                'uuid'          => Webpatser\Uuid\Uuid::generate(),
+                'uuid'          => (string) \Illuminate\Support\Str::uuid(),
                 'name'          => 'Estatal',
                 'created_at'    => \Carbon\Carbon::now()
             ],
             [
-                'uuid'          => Webpatser\Uuid\Uuid::generate(),
+                'uuid'          => (string) \Illuminate\Support\Str::uuid(),
                 'name'          => 'Privada',
                 'created_at'    => \Carbon\Carbon::now()
             ],
             [
-                'uuid'          => Webpatser\Uuid\Uuid::generate(),
+                'uuid'          => (string) \Illuminate\Support\Str::uuid(),
                 'name'          => 'Mista',
                 'created_at'    => \Carbon\Carbon::now()
             ],
             [
-                'uuid'          => Webpatser\Uuid\Uuid::generate(),
+                'uuid'          => (string) \Illuminate\Support\Str::uuid(),
                 'name'          => 'Indefinido',
                 'created_at'    => \Carbon\Carbon::now()
             ]

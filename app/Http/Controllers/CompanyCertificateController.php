@@ -112,7 +112,7 @@ class CompanyCertificateController extends AppBaseController
      */
     public function show($id)
     {
-        $companyCertificate = $this->companyCertificateRepository->findWithoutFail($id);
+        $companyCertificate = $this->companyCertificateRepository->find($id);
 
         if (empty($companyCertificate)) {
             Flash::error('Company Certificate not found');
@@ -132,7 +132,7 @@ class CompanyCertificateController extends AppBaseController
      */
     public function edit($id)
     {
-        $companyCertificate = $this->companyCertificateRepository->findWithoutFail($id);
+        $companyCertificate = $this->companyCertificateRepository->find($id);
 
         if (empty($companyCertificate)) {
             Flash::error('Company Certificate not found');
@@ -153,7 +153,7 @@ class CompanyCertificateController extends AppBaseController
      */
     public function update($id, UpdateCompanyCertificateRequest $request)
     {
-        $companyCertificate = $this->companyCertificateRepository->findWithoutFail($id);
+        $companyCertificate = $this->companyCertificateRepository->find($id);
 
         if (empty($companyCertificate)) {
             Flash::error('Company Certificate not found');
@@ -177,7 +177,7 @@ class CompanyCertificateController extends AppBaseController
      */
     public function destroy($id)
     {
-        $companyCertificate = $this->companyCertificateRepository->findWithoutFail($id);
+        $companyCertificate = $this->companyCertificateRepository->find($id);
 
         if (empty($companyCertificate)) {
             Flash::error('Company Certificate not found');
@@ -194,7 +194,7 @@ class CompanyCertificateController extends AppBaseController
 
     public function startAnalyze($id)
     {
-        $companyCertificate = $this->companyCertificateRepository->findWithoutFail($id);
+        $companyCertificate = $this->companyCertificateRepository->find($id);
 
         if (empty($companyCertificate)) {
             Flash::error('Pedido de certificado não encontrado.');
@@ -211,7 +211,7 @@ class CompanyCertificateController extends AppBaseController
 
     public function approve($id)
     {
-        $companyCertificate = $this->companyCertificateRepository->findWithoutFail($id);
+        $companyCertificate = $this->companyCertificateRepository->find($id);
 
         if (empty($companyCertificate)) {
             Flash::error('Pedido de certificado não encontrado.');
@@ -229,7 +229,7 @@ class CompanyCertificateController extends AppBaseController
     public function disapprove(Request $request)
     {
         $input = $request->all();
-        $companyCertificate = $this->companyCertificateRepository->findWithoutFail($input['company_certificate_id']);
+        $companyCertificate = $this->companyCertificateRepository->find($input['company_certificate_id']);
 
         if (empty($companyCertificate)) {
             Flash::error('Pedido de certificado não encontrado.');

@@ -1,6 +1,6 @@
 <!-- Links -->
 <ul class="sidenav-inner py-1">
-    @is(['superuser','admin','informatica','core','diretor'])
+    @hasanyrole('superuser|admin|informatica|core|diretor')
     <li class="sidenav-item {{(Route::is("dashboard"))? "active": ""}}" data-toggle="tooltip"
         data-placement="right" title="Dashboard" >
         <a class="sidenav-link" href="{{route("dashboard")}}">
@@ -8,7 +8,7 @@
             <div>Dashboard</div>
         </a>
     </li>
-    @endis
+    @endhasanyrole
     @shield('companyCertificates.index')
         <li class="sidenav-divider mb-1"></li>
 
@@ -115,7 +115,7 @@
     <li class="sidenav-divider mb-1"></li>
     @endshield
 
-    @is(['superuser','admin'])
+    @hasanyrole('superuser|admin')
     <li class="sidenav-item  @if(Route::is("certificates*") OR  Route::is("caes*") OR  Route::is("districts*") OR  Route::is("provinces*") OR  Route::is("requirements*") OR  Route::is("departments*") OR  Route::is("roles*") OR
       Route::is("permissions*") OR
         Route::is
@@ -183,9 +183,9 @@
     </li>
 
     <li class="sidenav-divider mb-1"></li>
-    @endis
+    @endhasanyrole
 
-    @is(['superuser','admin'])
+    @hasanyrole('superuser|admin')
 
     <li class="sidenav-item  @if(Route::is("users*")) open @endif">
         <a href="javascript:" class="sidenav-link sidenav-toggle">
@@ -217,7 +217,7 @@
 
         </ul>
     </li>
-    @endis
+    @endhasanyrole
 </ul>
 
 
@@ -295,10 +295,10 @@
     {{--<ul class="treeview-menu menu-open">--}}
         {{--<li class="{{ Route::is('users*') ? 'active' : '' }}"><a href="{!! route('users.index') !!}">Usuários</a></li>--}}
         {{--<li class="{{ Route::is('users*') ? 'active' : '' }}"><a href="{!! route('users.indexEmpresa') !!}">Usuários Empresas</a></li>--}}
-        {{--@is('superuser')<li class="{{ Route::is('group_users*') ? 'active' : '' }}"><a href="{!! route('group_users.index') !!}">Grupos de Acesso</a></li>@endis--}}
+        {{--@hasrole('superuser')<li class="{{ Route::is('group_users*') ? 'active' : '' }}"><a href="{!! route('group_users.index') !!}">Grupos de Acesso</a></li>@endhasrole--}}
     {{--</ul>--}}
 {{--</li>--}}
-{{--@is('superuser')--}}
+{{--@hasrole('superuser')--}}
 {{--<li  data-widget="tree" class=" {{ Request::is('admin/roles*') || Request::is('admin/permissions*') ? 'active' : '' }}">--}}
     {{--<a href="#">--}}
         {{--<i class="fa fa-key"></i> <span>Administrativo</span>--}}
@@ -311,7 +311,7 @@
         {{--<li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{!! route('roles.index') !!}">Regras</a></li>--}}
     {{--</ul>--}}
 {{--</li>--}}
-{{--@endis--}}
+{{--@endhasrole--}}
 {{--<li>--}}
     {{--<a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">--}}
         {{--<i class="fa fa-sign-out"></i> <span>Sair</span>--}}

@@ -73,7 +73,7 @@ class LegalSituationController extends AppBaseController
      */
     public function show($id)
     {
-        $legalSituation = $this->legalSituationRepository->findWithoutFail($id);
+        $legalSituation = $this->legalSituationRepository->find($id);
 
         if (empty($legalSituation)) {
             Flash::error('Legal Situation not found');
@@ -93,7 +93,7 @@ class LegalSituationController extends AppBaseController
      */
     public function edit($id)
     {
-        $legalSituation = $this->legalSituationRepository->findWithoutFail($id);
+        $legalSituation = $this->legalSituationRepository->find($id);
 
         if (empty($legalSituation)) {
             Flash::error('Legal Situation not found');
@@ -114,7 +114,7 @@ class LegalSituationController extends AppBaseController
      */
     public function update($id, UpdateLegalSituationRequest $request)
     {
-        $legalSituation = $this->legalSituationRepository->findWithoutFail($id);
+        $legalSituation = $this->legalSituationRepository->find($id);
 
         if (empty($legalSituation)) {
             Flash::error('Legal Situation not found');
@@ -138,7 +138,7 @@ class LegalSituationController extends AppBaseController
      */
     public function destroy($id)
     {
-        $legalSituation = $this->legalSituationRepository->findWithoutFail($id);
+        $legalSituation = $this->legalSituationRepository->find($id);
 
         if (empty($legalSituation)) {
             Flash::error('Legal Situation not found');

@@ -16,12 +16,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \PMEexport\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \PMEexport\Http\Middleware\TrustProxies::class,
-        \Barryvdh\Cors\HandleCors::class,
+        \Illuminate\Http\Middleware\HandleCors::class,
     ];
 
     /**
@@ -42,8 +42,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
-            'bindings',
-            \Barryvdh\Cors\HandleCors::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
@@ -64,14 +63,13 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
-        // Access control using permissions
-        'needsPermission' => \Artesaos\Defender\Middlewares\NeedsPermissionMiddleware::class,
-
-        // Simpler access control, uses only the groups
-        'needsRole' => \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class,
+        // Access control using permissions (spatie/laravel-permission)
+        'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+        'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+        'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         'RedirectIfEmpresa' => RedirectIfEmpresa::class,
 
-        'cors' => \Barryvdh\Cors\HandleCors::class,
+        'cors' => \Illuminate\Http\Middleware\HandleCors::class,
         'locale' => Language::class,
     ];
 }

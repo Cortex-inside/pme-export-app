@@ -78,7 +78,7 @@ class CompanyPartnerController extends AppBaseController
      */
     public function show($id)
     {
-        $companyPartner = $this->companyPartnerRepository->findWithoutFail($id);
+        $companyPartner = $this->companyPartnerRepository->find($id);
 
         if (empty($companyPartner)) {
             Flash::error('Sócio da empresa não encontrado');
@@ -98,7 +98,7 @@ class CompanyPartnerController extends AppBaseController
      */
     public function edit($id)
     {
-        $companyPartner = $this->companyPartnerRepository->findWithoutFail($id);
+        $companyPartner = $this->companyPartnerRepository->find($id);
 
         if (empty($companyPartner)) {
             Flash::error('Sócio da empresa não encontrado');
@@ -119,7 +119,7 @@ class CompanyPartnerController extends AppBaseController
      */
     public function update($id, UpdateCompanyPartnerRequest $request)
     {
-        $companyPartner = $this->companyPartnerRepository->findWithoutFail($id);
+        $companyPartner = $this->companyPartnerRepository->find($id);
 
         if (empty($companyPartner)) {
             Flash::error('Sócio da empresa não encontrado');
@@ -143,7 +143,7 @@ class CompanyPartnerController extends AppBaseController
      */
     public function destroy($id)
     {
-        $companyPartner = $this->companyPartnerRepository->findWithoutFail($id);
+        $companyPartner = $this->companyPartnerRepository->find($id);
 
         if (empty($companyPartner)) {
             Flash::error('Sócio da empresa não encontrado');

@@ -162,15 +162,11 @@ return [
         PMEexport\Providers\EventServiceProvider::class,
         PMEexport\Providers\RouteServiceProvider::class,
 
-        //https://github.com/artesaos/defender
-        \Artesaos\Defender\Providers\DefenderServiceProvider::class,
-
         //Providers do Sccafold
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
-        \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
-        \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 
@@ -220,9 +216,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        //https://github.com/artesaos/defender
-        'Defender' => \Artesaos\Defender\Facades\Defender::class,
 
         //ALIAS DO SCCAFOLD
         'Form'      => Collective\Html\FormFacade::class,

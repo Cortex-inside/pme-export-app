@@ -15,7 +15,7 @@
         <div class=" flex-grow-1"><h4 class="font-weight-bold py-3 mb-0"></h4></div>
         <div>
             <a class="btn btn-info pull-right" href="{{route("exchange.requests")}}"> @lang('sistema.Back')</a>
-            @is(['empresa','empresa_estrangeira'])
+            @hasanyrole('empresa|empresa_estrangeira')
                 @if($announcement->company_announcements->company->id == Auth::user()->company->id)
                     @if($announcement->status == 1)
                     <a class="btn btn-warning pull-right text-white" style="margin-right: 10px; margin-left: 10px"
@@ -27,7 +27,7 @@
                                                      document.getElementById('aprovar-form').submit();" ><i class="fas fa-window-close"></i>  @lang('sistema.Aprovar') </a>
                     @endif
                 @endif
-            @endis
+            @endhasanyrole
         </div>
     </div>
     <form action="{{route("exchange.request.closed",$announcement->uuid)}}" method="POST" id="aprovar-form" style="display: none;">
@@ -49,7 +49,7 @@
 @section('content')
     @include('messages')
     @include('flash::message')
-    @is(['empresa_estrangeira','empresa'])
+    @hasanyrole('empresa_estrangeira|empresa')
         @if($announcement->company_announcements->company->id == Auth::user()->company->id)
             <div class="card mb-4">
                 <h6 class="card-header">Empresa solicitante: {{$announcement->company_request->name}}
@@ -128,7 +128,7 @@
                 </div>
             </div>
         </div>
-    @endis
+    @endhasanyrole
     @if($announcement->status != 2)
         <div class="card mb-4">
             <h6 class="card-header">Entrar em contato com a empresa (Chat)</h6>

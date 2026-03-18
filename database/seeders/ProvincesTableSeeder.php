@@ -1,6 +1,9 @@
 <?php
 
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class ProvincesTableSeeder extends Seeder
 {
@@ -18,7 +21,7 @@ class ProvincesTableSeeder extends Seeder
         {
             $arrayFinal[] = array(
                 'id'            => $provincia->id,
-                'uuid'          => Webpatser\Uuid\Uuid::generate(),
+                'uuid'          => (string) \Illuminate\Support\Str::uuid(),
                 'name'          => $provincia->name,
                 'created_at'    => \Carbon\Carbon::now()
             );

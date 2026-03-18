@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Guilherme Dias
@@ -9,7 +10,6 @@
 namespace PMEexport\Services;
 
 
-use Artesaos\Defender\Facades\Defender;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
@@ -44,12 +44,13 @@ class CertificateService
     /**
      * ProductCategoryService constructor.
      */
-    public function __construct(CertificateRepository $certificateRepository,
-                                CertificateCategoryRepository $certificateCategoryRepository,
-                                DocumentService $documentService,
-                                CompanyCertificateRepository $companyCertificateRepository,
-                                CompanyCertificateMessageRepository $companyCertificateMessageRepository)
-    {
+    public function __construct(
+        CertificateRepository $certificateRepository,
+        CertificateCategoryRepository $certificateCategoryRepository,
+        DocumentService $documentService,
+        CompanyCertificateRepository $companyCertificateRepository,
+        CompanyCertificateMessageRepository $companyCertificateMessageRepository
+    ) {
         $this->certificateRepository = $certificateRepository;
         $this->certificateCategoryRepository = $certificateCategoryRepository;
         $this->documentService = $documentService;
@@ -57,14 +58,11 @@ class CertificateService
         $this->companyCertificateMessageRepository = $companyCertificateMessageRepository;
     }
 
-    public function getAll()
-    {
-    }
+    public function getAll() {}
 
     public function listCertificateCategoryWebsite()
     {
         return $this->certificateCategoryRepository->paginate();
-
     }
 
     public function listCertificateWebsite()
@@ -83,7 +81,7 @@ class CertificateService
 
     public function showRequestCertificate($certificate)
     {
-//        $certificate = $this->certificateRepository->findWithoutFail($id);
+        //        $certificate = $this->certificateRepository->find($id);
 
         if (empty($certificate)) {
             Flash::error('Certificado não encontrado');
@@ -105,7 +103,7 @@ class CertificateService
         $id = $input['certificate_id'];
         unset($input['certificate_id']);
 
-        $certificate = $this->certificateRepository->findWithoutFail($id);
+        $certificate = $this->certificateRepository->find($id);
 
         if (empty($certificate)) {
             Flash::error('Certificado não encontrado');
@@ -127,7 +125,8 @@ class CertificateService
                 $imageRequest = $request->file($certificateRequirement->requirement->id);
 
                 $path = $imageRequest->storePublicly(
-                    '/imagens/documents', 's3'
+                    '/imagens/documents',
+                    's3'
                 );
 
                 $path = env('AWS_URL') . $path;
@@ -140,7 +139,6 @@ class CertificateService
                     'type' => $certificateRequirement->requirement->type,
                     'url' => $path
                 );
-
             } else {
                 $document = array(
                     'company_certificate_id' => $companyCertificate->id,
@@ -153,7 +151,6 @@ class CertificateService
             }
 
             $this->documentService->saveDocument($document);
-
         }
 
         Flash::success('Solicitação realizada com sucesso.');
@@ -179,7 +176,7 @@ class CertificateService
         $id = $input['certificate_id'];
         unset($input['certificate_id']);
 
-        $certificate = $this->certificateRepository->findWithoutFail($id);
+        $certificate = $this->certificateRepository->find($id);
 
         if (empty($certificate)) {
             $arrayError = array("data" => array("error" => "Certificado não encontrado"));
@@ -207,7 +204,6 @@ class CertificateService
             );
 
             $this->documentService->saveDocument($document);
-
         }
 
         $array = array("data" => array("success" => true));
@@ -234,7 +230,7 @@ class CertificateService
 
     public function showCertificateToCompany($id)
     {
-        $companyCertificate = $this->companyCertificateRepository->findWithoutFail($id);
+        $companyCertificate = $this->companyCertificateRepository->find($id);
 
         if (Auth::user()->company->id != $companyCertificate->company_id) {
             Flash::error('Certificado não encontrado');
@@ -273,11 +269,11 @@ class CertificateService
 
     public function imprimir($id)
     {
-        $companyCertificate = $this->companyCertificateRepository->findWhere(['uuid'=>$id])->first();
-        if (!$companyCertificate OR $companyCertificate->status != 3) {
+        $companyCertificate = $this->companyCertificateRepository->findWhere(['uuid' => $id])->first();
+        if (!$companyCertificate or $companyCertificate->status != 3) {
             Flash::error('Certificado não encontrado ou não aprovado!');
 
-            if (Defender::is('empresa') OR Defender::is('empresa_estrangeira')) {
+            if (auth()->user()->hasRole('empresa') or auth()->user()->hasRole('empresa_estrangeira')) {
                 return redirect(route('sysCompany.certificates.myCertificates'));
             } else {
                 return redirect(route('companyCertificates.index'));
@@ -289,7 +285,7 @@ class CertificateService
 
     public function listOfCertificatesShow($id)
     {
-        $certificate = $this->certificateRepository->with('certificateRequirements', 'certificateRequirements.requirement')->findWithoutFail($id);
+        $certificate = $this->certificateRepository->with('certificateRequirements', 'certificateRequirements.requirement')->find($id);
         return $certificate;
     }
 }

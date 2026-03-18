@@ -2,7 +2,6 @@
 
 namespace PMEexport\Http\Middleware;
 
-use Artesaos\Defender\Facades\Defender;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +19,7 @@ class RedirectIfEmpresa
     {
         if (Auth::guard($guard)->check()) {
 
-            if (Defender::is(['empresa', 'empresa_estrangeira']) && !$request->is('sysCompany/complementRegister')) {
+            if (Auth::user()->hasAnyRole(['empresa', 'empresa_estrangeira']) && !$request->is('sysCompany/complementRegister')) {
 //                 return redirect()->route('exchange.index');
 
                 if(!Auth::user()->company) {

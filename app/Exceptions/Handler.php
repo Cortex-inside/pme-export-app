@@ -2,9 +2,14 @@
 
 namespace PMEexport\Exceptions;
 
-use Artesaos\Defender\Exceptions\ForbiddenException;
-use Exception;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -30,10 +35,10 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Throwable  $exception
      * @return void
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         parent::report($exception);
     }
@@ -41,30 +46,26 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @param  \Exception  $exception
-//     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
+     * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
-
         if ($exception instanceof ModelNotFoundException) {
             return response()->view('errors.401', [], 401);
-        } else if ($exception instanceof ForbiddenException) {
+        } elseif ($exception instanceof UnauthorizedException) {
             return response()->view('errors.401', [], 401);
-        }  else if ($exception instanceof NotFoundHttpException) {
+        } elseif ($exception instanceof NotFoundHttpException) {
             return response()->view('errors.401', [], 401);
-        } else if ($exception instanceof ValidationException) {
+        } elseif ($exception instanceof ValidationException) {
             return response()->view('errors.401', [], 401);
-        } else if ($exception instanceof FatalThrowableError) {
+        } elseif ($exception instanceof MethodNotAllowedHttpException) {
             return response()->view('errors.401', [], 401);
-        }  else if ($exception instanceof MethodNotAllowedHttpException) {
-            return response()->view('errors.401', [], 401);
-        }  else if ($exception instanceof AccessDeniedHttpException) {
+        } elseif ($exception instanceof AccessDeniedHttpException) {
             return response()->view('errors.401', [], 401);
         } else {
             return parent::render($request, $exception);
         }
-
     }
 }

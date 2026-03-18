@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Guilherme Dias
@@ -9,7 +10,6 @@
 namespace PMEexport\Services;
 
 
-use Artesaos\Defender\Facades\Defender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
@@ -34,10 +34,11 @@ class ExchangeRequestService
     /**
      * ProductService constructor.
      */
-    public function __construct(CompanyAnnouncementRepository $companyAnnouncementRepository,
-                                RequestMessageRepository $requestMessageRepository,
-                                RequestAnnouncementRepository $requestAnnouncementRepository)
-    {
+    public function __construct(
+        CompanyAnnouncementRepository $companyAnnouncementRepository,
+        RequestMessageRepository $requestMessageRepository,
+        RequestAnnouncementRepository $requestAnnouncementRepository
+    ) {
         $this->companyAnnouncementRepository = $companyAnnouncementRepository;
         $this->requestAnnouncementRepository = $requestAnnouncementRepository;
         $this->requestMessageRepository = $requestMessageRepository;
@@ -46,7 +47,7 @@ class ExchangeRequestService
     public function listRequest()
     {
         $requests = $this->requestAnnouncementRepository->paginate();
-        return view("exchange.request.index")->with(["requests"=>$requests]);
+        return view("exchange.request.index")->with(["requests" => $requests]);
     }
 
     public function listEnviados()
@@ -55,17 +56,17 @@ class ExchangeRequestService
             $this->requestAnnouncementRepository->pushCriteria(new RequestAnnouncementEnviadosCriteria());
             $requests = $this->requestAnnouncementRepository->paginate();
             return view("exchange.request.enviados")->with(["requests" => $requests]);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route("exchange.index");
         }
     }
     public function listAll()
     {
         try {
-//            $this->requestAnnouncementRepository->pushCriteria(new RequestAnnouncementEnviadosCriteria());
+            //            $this->requestAnnouncementRepository->pushCriteria(new RequestAnnouncementEnviadosCriteria());
             $requests = $this->requestAnnouncementRepository->paginate();
             return view("exchange.request.todos")->with(["requests" => $requests]);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route("exchange.index");
         }
     }
@@ -75,8 +76,8 @@ class ExchangeRequestService
         try {
             $this->requestAnnouncementRepository->pushCriteria(new RequestAnnouncementRecebidosCriteria());
             $requests = $this->requestAnnouncementRepository->paginate();
-            return view("exchange.request.recebidos")->with(["requests"=>$requests]);
-        }catch (\Exception $e) {
+            return view("exchange.request.recebidos")->with(["requests" => $requests]);
+        } catch (\Exception $e) {
             return redirect()->route("exchange.index");
         }
     }
@@ -86,8 +87,8 @@ class ExchangeRequestService
         try {
             $this->requestAnnouncementRepository->pushCriteria(new RequestAnnouncementFechadosCriteria());
             $requests = $this->requestAnnouncementRepository->paginate();
-            return view("exchange.request.fechados")->with(["requests"=>$requests]);
-        }catch (\Exception $e) {
+            return view("exchange.request.fechados")->with(["requests" => $requests]);
+        } catch (\Exception $e) {
             return redirect()->route("exchange.index");
         }
     }
@@ -96,10 +97,10 @@ class ExchangeRequestService
 
         $this->requestMessageRepository->pushCriteria(new RequestMessageCriteria());
         $messages = $this->requestMessageRepository
-            ->findWhere(["request_announcement_id"=>$announcement->id])
+            ->findWhere(["request_announcement_id" => $announcement->id])
             ->all();
 
-        return view('exchange.request.details', compact('messages','announcement'));
+        return view('exchange.request.details', compact('messages', 'announcement'));
     }
     public function cancelation($announcement, Request $request)
     {
@@ -137,7 +138,7 @@ class ExchangeRequestService
 
     public function offerStoreRequest($product, Request $request)
     {
-        $announcement = $this->companyAnnouncementRepository->findWhere(["uuid"=>$product])->first();
+        $announcement = $this->companyAnnouncementRepository->findWhere(["uuid" => $product])->first();
 
         return view('exchange.request.create')
             ->with('announcement', $announcement);
@@ -168,23 +169,21 @@ class ExchangeRequestService
             "coin"                      => $announcement->coin,
             "price"                     => ($price) ? $price : $announcement->price,
             "status"                    => 1,
-//            "market_type" => $announcement->company_id,
-//            "type_of_exposure" => $announcement->company_id,
-//            "visibility" => $announcement->company_id,
-//            "payment_model" => $announcement->company_id,
-          ];
+            //            "market_type" => $announcement->company_id,
+            //            "type_of_exposure" => $announcement->company_id,
+            //            "visibility" => $announcement->company_id,
+            //            "payment_model" => $announcement->company_id,
+        ];
 
         $this->requestAnnouncementRepository->create($data);
 
         Flash::success('Pedido realizado com sucesso!');
 
         return redirect()->route("exchange.requests");
-
     }
     public function getMessages()
     {
         return $this->requestMessageRepository->all();
-
     }
     public function sendMessageRequest(Request $request)
     {
@@ -192,7 +191,7 @@ class ExchangeRequestService
 
         $userId = Auth::user()->id;
 
-        if(Defender::is(['departamento', 'informatica', 'core', 'diretor', 'superuser', 'admin'])) {
+        if (auth()->user()->hasAnyRole(['departamento', 'informatica', 'core', 'diretor', 'superuser', 'admin'])) {
             $input["type"] = 1;
         }
 

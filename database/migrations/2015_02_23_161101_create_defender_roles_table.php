@@ -3,17 +3,20 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDefenderRolesTable extends Migration
+// Replaced Defender with Spatie/laravel-permission
+return new class extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::create(config('defender.role_table', 'roles'), function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->unique();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('guard_name');
             $table->timestamps();
+            $table->unique(['name', 'guard_name']);
         });
     }
 
@@ -22,6 +25,6 @@ class CreateDefenderRolesTable extends Migration
      */
     public function down()
     {
-        Schema::drop(config('defender.role_table', 'roles'));
+        Schema::dropIfExists('roles');
     }
-}
+};

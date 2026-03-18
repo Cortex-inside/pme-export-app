@@ -2,7 +2,6 @@
 
 namespace PMEexport\Criteria;
 
-use Artesaos\Defender\Facades\Defender;
 use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
@@ -34,7 +33,7 @@ class CompanyEmpresaCriteria implements CriteriaInterface
     public function apply($model, RepositoryInterface $repository)
     {
 
-        if(Defender::is(['empresa','empresa_estrangeira'])) {
+        if(auth()->user()->hasAnyRole(['empresa','empresa_estrangeira'])) {
 
             $company_id = Auth::user()->company_id;
 

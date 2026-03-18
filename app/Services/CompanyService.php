@@ -49,7 +49,7 @@ class CompanyService
 
     public function showEditView($id)
     {
-        $company = $this->companyRepository->findWithoutFail($id);
+        $company = $this->companyRepository->find($id);
 
         if (empty($company)) {
             Flash::error('Company not found');
@@ -63,7 +63,7 @@ class CompanyService
     public function showCompany()
     {
         $empresaId = Auth::user()->company_id;
-        $company = $this->companyRepository->findWithoutFail($empresaId);
+        $company = $this->companyRepository->find($empresaId);
 
         if (empty($company)) {
             Flash::error('Company not found');

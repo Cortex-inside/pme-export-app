@@ -73,7 +73,7 @@ class RequestMessageController extends AppBaseController
      */
     public function show($id)
     {
-        $requestMessage = $this->requestMessageRepository->findWithoutFail($id);
+        $requestMessage = $this->requestMessageRepository->find($id);
 
         if (empty($requestMessage)) {
             Flash::error('Request Message not found');
@@ -93,7 +93,7 @@ class RequestMessageController extends AppBaseController
      */
     public function edit($id)
     {
-        $requestMessage = $this->requestMessageRepository->findWithoutFail($id);
+        $requestMessage = $this->requestMessageRepository->find($id);
 
         if (empty($requestMessage)) {
             Flash::error('Request Message not found');
@@ -114,7 +114,7 @@ class RequestMessageController extends AppBaseController
      */
     public function update($id, UpdateRequestMessageRequest $request)
     {
-        $requestMessage = $this->requestMessageRepository->findWithoutFail($id);
+        $requestMessage = $this->requestMessageRepository->find($id);
 
         if (empty($requestMessage)) {
             Flash::error('Request Message not found');
@@ -138,7 +138,7 @@ class RequestMessageController extends AppBaseController
      */
     public function destroy($id)
     {
-        $requestMessage = $this->requestMessageRepository->findWithoutFail($id);
+        $requestMessage = $this->requestMessageRepository->find($id);
 
         if (empty($requestMessage)) {
             Flash::error('Request Message not found');
