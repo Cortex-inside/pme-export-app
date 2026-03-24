@@ -11,10 +11,10 @@
             {!! Form::open(['route' => ['sysCompany.companyAnnouncements.destroy', $announcement->uuid], 'method' =>
             'delete']) !!}
             <div class='btn-group pull-right'>
-                @shield('sysCompany.companyAnnouncements.destroy')
+                @can('sysCompany.companyAnnouncements.destroy')
                 {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn
                 btn-danger', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
-                @endshield
+                @endcan
             </div>
             {!! Form::close() !!}
         </div>
@@ -36,12 +36,12 @@
                 <input type="hidden" name="_method" value="DELETE">
                 @csrf
                 <div class="btn-group pull-right" role="group" aria-label="...">
-                    {{--@shield('user.edit')--}}
+                    {{--@can('user.edit')--}}
                     {{--<a class="btn btn-warning btn-group" role="group" href="{{ route('users.edit', $user->uuid) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>--}}
-                    {{--@endshield--}}
-                    @shield('companyAnnouncements.destroy')
+                    {{--@endcan--}}
+                    @can('companyAnnouncements.destroy')
                     <button type="submit" class="btn btn-danger">Excluir <i class="glyphicon glyphicon-trash"></i></button>
-                    @endshield
+                    @endcan
                 </div>
             </form>
         </div>

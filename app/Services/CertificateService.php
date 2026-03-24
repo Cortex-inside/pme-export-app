@@ -12,6 +12,7 @@ namespace PMEexport\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use PMEexport\Support\UploadStorage;
 use Laracasts\Flash\Flash;
 use PMEexport\Criteria\CertificatesByCompanyCriteria;
 use PMEexport\Models\Certificate;
@@ -124,12 +125,9 @@ class CertificateService
             if ($certificateRequirement->requirement->type == 1) {
                 $imageRequest = $request->file($certificateRequirement->requirement->id);
 
-                $path = $imageRequest->storePublicly(
-                    '/imagens/documents',
-                    's3'
-                );
+                $path = UploadStorage::storePublicly($imageRequest, '/imagens/documents');
 
-                $path = env('AWS_URL') . $path;
+                $path = UploadStorage::url($path);
 
                 $document = array(
                     'company_certificate_id' => $companyCertificate->id,
@@ -232,13 +230,13 @@ class CertificateService
     {
         $companyCertificate = $this->companyCertificateRepository->find($id);
 
-        if (Auth::user()->company->id != $companyCertificate->company_id) {
+        if (empty($companyCertificate)) {
             Flash::error('Certificado não encontrado');
 
             return redirect(route('sysCompany.certificates.myCertificates'));
         }
 
-        if (empty($companyCertificate)) {
+        if (Auth::user()->company->id != $companyCertificate->company_id) {
             Flash::error('Certificado não encontrado');
 
             return redirect(route('sysCompany.certificates.myCertificates'));
@@ -251,7 +249,20 @@ class CertificateService
     {
         $input = $request->all();
 
+        if (!isset($input['company_certificate_id'])) {
+            Flash::error('Certificado não encontrado');
+
+            return redirect(route('sysCompany.certificates.myCertificates'));
+        }
+
         $userId = Auth::user()->id;
+        $companyCertificate = $this->companyCertificateRepository->find($input['company_certificate_id']);
+
+        if (empty($companyCertificate) || Auth::user()->company->id != $companyCertificate->company_id) {
+            Flash::error('Certificado não encontrado');
+
+            return redirect(route('sysCompany.certificates.myCertificates'));
+        }
 
         $input['user_id'] = $userId;
 

@@ -28,6 +28,8 @@ return [
 
     'cloud' => env('FILESYSTEM_CLOUD', 's3'),
 
+    'uploads_disk' => env('FILESYSTEM_UPLOADS_DISK', 's3'),
+
     /*
     |--------------------------------------------------------------------------
     | Filesystem Disks

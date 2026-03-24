@@ -14,17 +14,17 @@
             <td>
                 {!! Form::open(['route' => ['departments.destroy', $department->uuid], 'method' => 'delete']) !!}
                 <div class='btn-group pull-right'>
-                    @shield('departments.show')
+                    @can('departments.show')
                     <a href="{!! route('departments.show', [$department->uuid]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                    @endshield
-                    @shield('departments.edit')
+                    @endcan
+                    @can('departments.edit')
                     <a href="{!! route('departments.edit', [$department->uuid]) !!}" class='btn
                     btn-info btn-sm'><i class="far fa-edit"></i> Editar</a>&nbsp;
-                    @endshield
-                    @shield('departments.destroy')
+                    @endcan
+                    @can('departments.destroy')
                     {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
-                    @endshield
+                    @endcan
                 </div>
                 {!! Form::close() !!}
             </td>

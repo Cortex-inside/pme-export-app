@@ -38,10 +38,10 @@
                                 <td class="text-right">
                                     {!! Form::open(['route' => ['roles.destroy', $role->id], 'method' => 'delete']) !!}
                                     <div class='btn-group pull-right'>
-                                        @shield('roles.show')
+                                        @can('roles.show')
                                         <a href="{!! route('roles.show', [$role->id]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Show</a>&nbsp;
-                                        @endshield
+                                        @endcan
                                     </div>
                                     {!! Form::close() !!}
                                 </td>

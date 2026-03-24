@@ -111,7 +111,7 @@
                             <div class="gallery__item">
                                 <div class="gallery__item__inner">
                                     <figure>
-                                        <img src="/img/blank.gif" style="background-image: url('{{env('AWS_URL') . $category->photo}}');" alt="demo" />
+                                        <img src="/img/blank.gif" style="background-image: url('{{$category->photo_url}}');" alt="demo" />
 
                                         <a class="gallery__item__description" href="{!! route('exchange.index') !!}" >
                                             <span class="gallery__item__title">Produto</span>

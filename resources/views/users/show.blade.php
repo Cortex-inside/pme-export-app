@@ -3,10 +3,10 @@
     <div class="d-flex">
         <div class=" flex-grow-1"><h4 class="font-weight-bold py-3 mb-0"></h4></div>
         <div class="">
-            @shield('users.edit')
+            @can('users.edit')
             <a href="{!! route('users.edit', [$user->uuid]) !!}" class='btn
                     btn-info'><i class="far fa-edit"></i> Editar</a>&nbsp;
-            @endshield
+            @endcan
         </div>
     </div>
     <div class="text-muted small mt-0 mb-4 d-block breadcrumb">
