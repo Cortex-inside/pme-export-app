@@ -14,6 +14,10 @@
 Route::group(array('namespace' => 'Site','middleware'=>['locale']), function() {
     Route::get('/', ["as" => "site.index", "uses" => "HomeController@index"]);
     Route::get('/contato', ["as" => "site.contato", "uses" => "ContatoController@contato"]);
+    Route::get('/suporte', function () {
+        return redirect()->route('site.contato');
+    })->name('site.suporte');
+    Route::view('/faq', 'site.faq')->name('site.faq');
     Route::post('/contato', ["as" => "site.contato-envia", "uses" => "ContatoController@contatoEnvia"]);
     Route::get('/sobre', ["as" => "site.sobre", "uses" => "HomeController@about"]);
     Route::get('/produtos', ["as" => "site.produtos", "uses" => "ProdutoController@index"]);
@@ -253,14 +257,13 @@ Route::group(['prefix' => 'sysCompany','middleware'=>['auth', 'RedirectIfEmpresa
 
     //CERTIFICATES
     Route::group(['prefix' => 'certificates'], function () {
-        //TODO: AJUSTAR PERMISSOES
-        Route::get('/', ["as"=>"sysCompany.certificates.index","uses" => "CertificateController@indexCompany"]);
-        Route::get('/requestCertificate/{certificate}', ["as"=>"sysCompany.certificates.requestCertificate", "uses" => "CertificateController@requestCertificate"]);
-        Route::post('/', ["as"=>"sysCompany.certificates.storeRequestCertificate","uses" => "CertificateController@storeRequestCertificate"]);
-        Route::get('/myCertificates', ["as"=>"sysCompany.certificates.myCertificates","uses" => "CertificateController@certificatesFromCompany"]);
-        Route::get('/myCertificates/{companyCertificate}', ["as"=>"sysCompany.certificates.showMyCertificates","uses" => "CertificateController@showCertificateToCompany"]);
-        Route::get('/myCertificates-imprimir/{cCertificate}', ["as"=>"sysCompany.certificates.showMyCertificates-imprimir","uses" => "CertificateController@imprimir"]);
-        Route::post('/sendMessage', ["as"=>"sysCompany.certificates.sendMessageRequestCertificate","uses" => "CertificateController@sendMessageRequestCertificate"]);
+        Route::get('/', ["as"=>"sysCompany.certificates.index","uses" => "CertificateController@indexCompany"])->middleware(['permission:certificates.index']);
+        Route::get('/requestCertificate/{certificate}', ["as"=>"sysCompany.certificates.requestCertificate", "uses" => "CertificateController@requestCertificate"])->middleware(['permission:certificates.show']);
+        Route::post('/', ["as"=>"sysCompany.certificates.storeRequestCertificate","uses" => "CertificateController@storeRequestCertificate"])->middleware(['permission:certificates.create']);
+        Route::get('/myCertificates', ["as"=>"sysCompany.certificates.myCertificates","uses" => "CertificateController@certificatesFromCompany"])->middleware(['permission:companyCertificates.index']);
+        Route::get('/myCertificates/{companyCertificate}', ["as"=>"sysCompany.certificates.showMyCertificates","uses" => "CertificateController@showCertificateToCompany"])->middleware(['permission:companyCertificates.index']);
+        Route::get('/myCertificates-imprimir/{cCertificate}', ["as"=>"sysCompany.certificates.showMyCertificates-imprimir","uses" => "CertificateController@imprimir"])->middleware(['permission:companyCertificates.index']);
+        Route::post('/sendMessage', ["as"=>"sysCompany.certificates.sendMessageRequestCertificate","uses" => "CertificateController@sendMessageRequestCertificate"])->middleware(['permission:companyCertificates.index']);
     });
 
 });

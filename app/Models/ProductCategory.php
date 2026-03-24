@@ -4,6 +4,7 @@ namespace PMEexport\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use PMEexport\Traits\Uuids;
 
 /**
@@ -64,6 +65,26 @@ class ProductCategory extends Model
         'name' => 'required:max:255|min:3|string',
         'photo' => 'required',
     ];
+
+
+    public function getPhotoUrlAttribute()
+    {
+        if (!$this->photo) {
+            return null;
+        }
+
+        if (Str::startsWith($this->photo, ['http://', 'https://'])) {
+            return $this->photo;
+        }
+
+        $baseUrl = rtrim((string) config('filesystems.disks.s3.url', env('AWS_URL', '')), '/');
+
+        if (!$baseUrl) {
+            return $this->photo;
+        }
+
+        return $baseUrl . '/' . ltrim($this->photo, '/');
+    }
 
     public function nameFilter()
     {

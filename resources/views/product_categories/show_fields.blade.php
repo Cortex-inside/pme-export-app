@@ -18,12 +18,12 @@
         <div id="gallery-thumbnails" class="row form-row">
             <div class="gallery-sizer col-sm-6 col-md-6 col-xl-3 position-absolute"></div>
                 <div class="gallery-thumbnail col-sm-6 col-md-6 col-xl-3 mb-2" data-tag="nature">
-                    <a href="{!! env("AWS_URL") .  $productCategory->photo !!}" class="img-thumbnail img-thumbnail-zoom-in">
+                    <a href="{!! $productCategory->photo_url !!}" class="img-thumbnail img-thumbnail-zoom-in">
                         <span class="img-thumbnail-overlay bg-dark opacity-25"></span>
                         <span class="img-thumbnail-content display-4 text-white">
                                 <i class="ion ion-ios-search"></i>
                             </span>
-                        <img src="{!! env("AWS_URL") .  $productCategory->photo !!}" class="img-fluid" alt="images">
+                        <img src="{!! $productCategory->photo_url !!}" class="img-fluid" alt="images">
                     </a>
                 </div>
         </div>

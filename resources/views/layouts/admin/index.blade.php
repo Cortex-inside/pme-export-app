@@ -165,8 +165,8 @@
                                                                                          target="_blank">PmeExporte</a></span>
                             </div>
                             <div>
-                                {{--<a href="javascript:" class="footer-link pt-3">Quem somos ?</a>--}}
-                                {{--<a href="javascript:" class="footer-link pt-3 ml-4">Suporte</a>--}}
+                                <a href="{{ route('site.sobre') }}" class="footer-link pt-3" target="_blank">Quem somos?</a>
+                                <a href="{{ route('site.suporte') }}" class="footer-link pt-3 ml-4" target="_blank">Suporte</a>
                             </div>
                         </div>
                     </nav>
