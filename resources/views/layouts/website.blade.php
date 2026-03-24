@@ -164,8 +164,8 @@
                                             <li><a href="/admin">Minha conta</a></li>
                                         @endhasanyrole
                                     @endauth
-                                    <li><a href="#">Suporte</a></li>
-                                    <li><a href="#">Perguntas Frequentes</a></li>
+                                    <li><a href="{{route('site.suporte')}}">Suporte</a></li>
+                                    <li><a href="{{route('site.faq')}}">Perguntas Frequentes</a></li>
 
                                 </ul>
                             </div>
