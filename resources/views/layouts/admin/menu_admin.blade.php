@@ -20,20 +20,20 @@
 
             <ul class="sidenav-menu">
                 <li class="sidenav-item {{(Route::is("companyCertificates.index"))? "active": ""}}" data-toggle="tooltip"
-                    data-placement="right" title="Todos Pedidos" >
-                    <a class="sidenav-link" href="{{route("companyCertificates.index")}}"><div>Todos</div></a>
+                    data-placement="right" title="@lang('sistema.menu_admin.todos_pedidos')" >
+                    <a class="sidenav-link" href="{{route("companyCertificates.index")}}"><div>@lang('sistema.menu_admin.todos')</div></a>
                 </li>
-                <li class="sidenav-item {{(Route::is("companyCertificates.pending"))? "active": ""}}" data-toggle="tooltip" data-placement="right" title="Pedidos Pendentes" >
-                    <a class="sidenav-link" href="{{route("companyCertificates.pending")}}"><div>Pendentes</div></a>
+                <li class="sidenav-item {{(Route::is("companyCertificates.pending"))? "active": ""}}" data-toggle="tooltip" data-placement="right" title="@lang('sistema.menu_admin.pedidos_pendentes')" >
+                    <a class="sidenav-link" href="{{route("companyCertificates.pending")}}"><div>@lang('sistema.menu_admin.pendentes')</div></a>
                 </li>
-                <li class="sidenav-item {{(Route::is("companyCertificates.approved"))? "active": ""}}" data-toggle="tooltip" data-placement="right" title="Pedidos Aprovados" >
-                    <a class="sidenav-link" href="{{route("companyCertificates.approved")}}"><div>Aprovados</div></a>
+                <li class="sidenav-item {{(Route::is("companyCertificates.approved"))? "active": ""}}" data-toggle="tooltip" data-placement="right" title="@lang('sistema.menu_admin.pedidos_aprovados')" >
+                    <a class="sidenav-link" href="{{route("companyCertificates.approved")}}"><div>@lang('sistema.menu_admin.aprovados')</div></a>
                 </li>
-                <li class="sidenav-item {{(Route::is("companyCertificates.disapproved"))? "active": ""}}" data-toggle="tooltip" data-placement="right" title="Pedidos Reprovados" >
-                    <a class="sidenav-link" href="{{route("companyCertificates.disapproved")}}"><div>Reprovados</div></a>
+                <li class="sidenav-item {{(Route::is("companyCertificates.disapproved"))? "active": ""}}" data-toggle="tooltip" data-placement="right" title="@lang('sistema.menu_admin.pedidos_reprovados')" >
+                    <a class="sidenav-link" href="{{route("companyCertificates.disapproved")}}"><div>@lang('sistema.menu_admin.reprovados')</div></a>
                 </li>
-                <li class="sidenav-item {{(Route::is("companyCertificates.inProgress"))? "active": ""}}" data-toggle="tooltip" data-placement="right" title="Em andamento" >
-                    <a class="sidenav-link" href="{{route("companyCertificates.inProgress")}}"><div>Em andamento</div></a>
+                <li class="sidenav-item {{(Route::is("companyCertificates.inProgress"))? "active": ""}}" data-toggle="tooltip" data-placement="right" title="@lang('sistema.menu_admin.em_andamento')" >
+                    <a class="sidenav-link" href="{{route("companyCertificates.inProgress")}}"><div>@lang('sistema.menu_admin.em_andamento')</div></a>
                 </li>
             </ul>
         </li>
@@ -51,25 +51,25 @@
             @can('companies.index')
             <li class="sidenav-item {{(Route::is("companies.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("companies.index")}}"><div>Todas</div></a>
+                <a class="sidenav-link" href="{{route("companies.index")}}"><div>@lang('sistema.menu_admin.todas')</div></a>
             </li>
             @endcan
             @can('companies.pending')
             <li class="sidenav-item {{(Route::is("companies.pending"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("companies.pending")}}"><div>Pendentes</div></a>
+                <a class="sidenav-link" href="{{route("companies.pending")}}"><div>@lang('sistema.menu_admin.pendentes')</div></a>
             </li>
             @endcan
             @can('companies.approved')
             <li class="sidenav-item {{(Route::is("companies.approved"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("companies.approved")}}"><div>Aprovadas</div></a>
+                <a class="sidenav-link" href="{{route("companies.approved")}}"><div>@lang('sistema.menu_admin.aprovadas')</div></a>
             </li>
             @endcan
             @can('companies.disapproved')
             <li class="sidenav-item {{(Route::is("companies.disapproved"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("companies.disapproved")}}"><div>Reprovadas</div></a>
+                <a class="sidenav-link" href="{{route("companies.disapproved")}}"><div>@lang('sistema.menu_admin.reprovadas')</div></a>
             </li>
             @endcan
         </ul>
@@ -88,9 +88,9 @@
             @can('exchange.requests.todos')
             <li class="sidenav-item {{(Route::is("exchange.requests-todos"))? "active": ""}}"
                 data-toggle="tooltip"
-                data-placement="right" title="Pedidos Todos" >
+                data-placement="right" title="@lang('sistema.menu_admin.pedidos_todos')" >
                 <a class="sidenav-link" href="{{route("exchange.requests-todos")}}"><div><i class=" feather icon-download "></i>
-                        Todos</div></a>
+                        @lang('sistema.menu_admin.todos')</div></a>
             </li>
             @endcan
 
@@ -106,9 +106,9 @@
             <div>@lang('sistema.menu.Products')</div>
         </a>
         <ul class="sidenav-menu">
-            <li class="sidenav-item {{ Route::is('products.create') ? 'active' : '' }}"><a class="sidenav-link" href="{!! route('products.create') !!}">Cadastrar produto</a></li>
-            <li class="sidenav-item {{ Route::is('products.index') ? 'active' : '' }}"><a class="sidenav-link" href="{!! route('products.index') !!}">Produtos</a></li>
-            <li class="sidenav-item {{ Route::is('productCategories.index') ? 'active' : '' }}"><a class="sidenav-link" href="{!! route('productCategories.index') !!}">Categorias</a></li>
+            <li class="sidenav-item {{ Route::is('products.create') ? 'active' : '' }}"><a class="sidenav-link" href="{!! route('products.create') !!}">@lang('sistema.menu_admin.cadastrar_produto')</a></li>
+            <li class="sidenav-item {{ Route::is('products.index') ? 'active' : '' }}"><a class="sidenav-link" href="{!! route('products.index') !!}">@lang('sistema.menu.Products')</a></li>
+            <li class="sidenav-item {{ Route::is('productCategories.index') ? 'active' : '' }}"><a class="sidenav-link" href="{!! route('productCategories.index') !!}">@lang('sistema.menu_admin.categorias')</a></li>
 
         </ul>
     </li>
@@ -129,20 +129,19 @@
             @can('certificates.index')
             <li class="sidenav-item {{(Route::is("certificates.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("certificates.index")}}"><div>Certificados</div></a>
+                <a class="sidenav-link" href="{{route("certificates.index")}}"><div>@lang('sistema.menu_admin.certificados')</div></a>
             </li>
             @endcan
             @can('certificateCategories.index')
             <li class="sidenav-item {{(Route::is("certificateCategories.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("certificateCategories.index")}}"><div>Certificado
-                        Categoria</div></a>
+                <a class="sidenav-link" href="{{route("certificateCategories.index")}}"><div>@lang('sistema.menu_admin.certificado_categoria')</div></a>
             </li>
             @endcan
             @can('requirements.index')
             <li class="sidenav-item {{(Route::is("requirements.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("requirements.index")}}"><div>Exigências</div></a>
+                <a class="sidenav-link" href="{{route("requirements.index")}}"><div>@lang('sistema.menu_admin.exigencias')</div></a>
             </li>
             @endcan
 
@@ -152,7 +151,7 @@
             @can('departments.index')
             <li class="sidenav-item {{(Route::is("departments.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Departamentos" >
-                <a class="sidenav-link" href="{{route("departments.index")}}"><div>Departamentos</div></a>
+                <a class="sidenav-link" href="{{route("departments.index")}}"><div>@lang('sistema.menu_admin.departamentos')</div></a>
             </li>
             @endcan
 
@@ -160,14 +159,14 @@
             @can('provinces.index')
             <li class="sidenav-item {{(Route::is("provinces.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Províncias" >
-                <a class="sidenav-link" href="{{route("provinces.index")}}"><div>Províncias</div></a>
+                <a class="sidenav-link" href="{{route("provinces.index")}}"><div>@lang('sistema.menu_admin.provincias')</div></a>
             </li>
             @endcan
 
             @can('districts.index')
             <li class="sidenav-item {{(Route::is("districts.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Distritos" >
-                <a class="sidenav-link" href="{{route("districts.index")}}"><div>Distritos</div></a>
+                <a class="sidenav-link" href="{{route("districts.index")}}"><div>@lang('sistema.menu_admin.distritos')</div></a>
             </li>
             @endcan
 
@@ -197,21 +196,21 @@
             @can('users.index')
             <li class="sidenav-item {{(Route::is("users.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("users.index")}}"><div>Usuários</div></a>
+                <a class="sidenav-link" href="{{route("users.index")}}"><div>@lang('sistema.menu_admin.usuarios')</div></a>
             </li>
             @endcan
 
             @can('users.index')
             <li class="sidenav-item {{(Route::is("users.indexEmpresa"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("users.indexEmpresa")}}"><div>Usuários Empresa</div></a>
+                <a class="sidenav-link" href="{{route("users.indexEmpresa")}}"><div>@lang('sistema.menu_admin.usuarios_empresa')</div></a>
             </li>
             @endcan
 
             @can('roles.index')
             <li class="sidenav-item {{(Route::is("roles.index"))? "active": ""}}" data-toggle="tooltip"
                 data-placement="right" title="Empresas" >
-                <a class="sidenav-link" href="{{route("roles.index")}}"><div>Grupos</div></a>
+                <a class="sidenav-link" href="{{route("roles.index")}}"><div>@lang('sistema.menu_admin.grupos')</div></a>
             </li>
             @endcan
 
@@ -230,7 +229,7 @@
     {{--</a>--}}
     {{--<ul class="treeview-menu menu-open">--}}
         {{--<li class="{{ Request::is('admin/certificates*') ? 'active' : '' }}"><a href="{!! route('certificates.index') !!}">Certificados</a></li>--}}
-        {{--<li class="{{ Request::is('admin/certificateCategories*') ? 'active' : '' }}"><a href="{!! route('certificateCategories.index') !!}">Categorias</a></li>--}}
+        {{--<li class="{{ Request::is('admin/certificateCategories*') ? 'active' : '' }}"><a href="{!! route('certificateCategories.index') !!}">@lang('sistema.menu_admin.categorias')</a></li>--}}
         {{--<li class="{{ Request::is('admin/requirements*') ? 'active' : '' }}"><a href="{!! route('requirements.index') !!}">Exigencias</a></li>--}}
     {{--</ul>--}}
 {{--</li>--}}
@@ -244,8 +243,8 @@
     {{--</a>--}}
     {{--<ul class="treeview-menu menu-open">--}}
         {{--<li class="{{ Route::is('products.create') ? 'active' : '' }}"><a href="{!! route('products.create') !!}">Cadastrar produto <span class="label label-success">new</span></a></li>--}}
-        {{--<li class="{{ Route::is('products.index') ? 'active' : '' }}"><a href="{!! route('products.index') !!}">Produtos</a></li>--}}
-        {{--<li class="{{ Route::is('productCategories.index') ? 'active' : '' }}"><a href="{!! route('productCategories.index') !!}">Categorias</a></li>--}}
+        {{--<li class="{{ Route::is('products.index') ? 'active' : '' }}"><a href="{!! route('products.index') !!}">@lang('sistema.menu.Products')</a></li>--}}
+        {{--<li class="{{ Route::is('productCategories.index') ? 'active' : '' }}"><a href="{!! route('productCategories.index') !!}">@lang('sistema.menu_admin.categorias')</a></li>--}}
 
     {{--</ul>--}}
 {{--</li>--}}
