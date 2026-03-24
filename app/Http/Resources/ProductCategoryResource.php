@@ -17,7 +17,7 @@ class ProductCategoryResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'photo' => env('AWS_URL','') . $this->photo,
+            'photo' => $this->photo_url,
             'products' => ProductResource::collection($this->products)
         ];
     }

@@ -232,13 +232,13 @@ class CertificateService
     {
         $companyCertificate = $this->companyCertificateRepository->find($id);
 
-        if (Auth::user()->company->id != $companyCertificate->company_id) {
+        if (empty($companyCertificate)) {
             Flash::error('Certificado não encontrado');
 
             return redirect(route('sysCompany.certificates.myCertificates'));
         }
 
-        if (empty($companyCertificate)) {
+        if (Auth::user()->company->id != $companyCertificate->company_id) {
             Flash::error('Certificado não encontrado');
 
             return redirect(route('sysCompany.certificates.myCertificates'));
@@ -251,7 +251,20 @@ class CertificateService
     {
         $input = $request->all();
 
+        if (!isset($input['company_certificate_id'])) {
+            Flash::error('Certificado não encontrado');
+
+            return redirect(route('sysCompany.certificates.myCertificates'));
+        }
+
         $userId = Auth::user()->id;
+        $companyCertificate = $this->companyCertificateRepository->find($input['company_certificate_id']);
+
+        if (empty($companyCertificate) || Auth::user()->company->id != $companyCertificate->company_id) {
+            Flash::error('Certificado não encontrado');
+
+            return redirect(route('sysCompany.certificates.myCertificates'));
+        }
 
         $input['user_id'] = $userId;
 

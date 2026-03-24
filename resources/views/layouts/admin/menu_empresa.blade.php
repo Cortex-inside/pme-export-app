@@ -75,16 +75,20 @@
             </a>
 
             <ul class="sidenav-menu">
+                @shield('certificates.index')
                 <li class="sidenav-item {{(Route::is("sysCompany.certificates.index"))? "active": ""}}" data-toggle="tooltip"
                     data-placement="right" title="@lang('sistema.menu_empresa.Solicitar')" >
                     <a class="sidenav-link" href="{{route("sysCompany.certificates.index")}}"><div><i class="fas fa-clipboard-list"></i> @lang('sistema.menu_empresa.Solicitar')</div></a>
                 </li>
+                @endshield
+                @shield('companyCertificates.index')
                 <li class="sidenav-item {{(Route::is("sysCompany.certificates.myCertificates"))? "active": ""}}"
                     data-toggle="tooltip"
                     data-placement="right" title="@lang('sistema.menu_empresa.MeusCertificados')" >
                     <a class="sidenav-link" href="{{route("sysCompany.certificates.myCertificates")}}"><div><i class=" fas fa-clipboard-check "></i>
                             @lang('sistema.menu_empresa.MeusCertificados')</div></a>
                 </li>
+                @endshield
 
             </ul>
         </li>

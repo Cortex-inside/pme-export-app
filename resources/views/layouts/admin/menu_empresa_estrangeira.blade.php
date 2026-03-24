@@ -69,17 +69,50 @@
         </ul>
     </li>
 
-    <li class="sidenav-item  @if(Request::is('sysCompany.company.index')) open @endif">
+
+    <li class="sidenav-item  @if(Request::is('sysCompany/certificates*')) open @endif">
+        <a href="javascript:" class="sidenav-link sidenav-toggle">
+            <i class="sidenav-icon fas fa-clipboard"></i>
+            <div> @lang('sistema.menu_empresa.Certificados')</div>
+        </a>
+
+        <ul class="sidenav-menu">
+            @shield('certificates.index')
+            <li class="sidenav-item {{(Route::is("sysCompany.certificates.index"))? "active": ""}}" data-toggle="tooltip"
+                data-placement="right" title="@lang('sistema.menu_empresa.Solicitar')" >
+                <a class="sidenav-link" href="{{route("sysCompany.certificates.index")}}"><div><i class="fas fa-clipboard-list"></i> @lang('sistema.menu_empresa.Solicitar')</div></a>
+            </li>
+            @endshield
+            @shield('companyCertificates.index')
+            <li class="sidenav-item {{(Route::is("sysCompany.certificates.myCertificates"))? "active": ""}}"
+                data-toggle="tooltip"
+                data-placement="right" title="@lang('sistema.menu_empresa.MeusCertificados')" >
+                <a class="sidenav-link" href="{{route("sysCompany.certificates.myCertificates")}}"><div><i class=" fas fa-clipboard-check "></i>
+                        @lang('sistema.menu_empresa.MeusCertificados')</div></a>
+            </li>
+            @endshield
+        </ul>
+    </li>
+
+    <li class="sidenav-item  @if(Request::is('sysCompany/company*') OR Route::is('sysCompany.company.users.change_password')) open @endif">
         <a href="javascript:" class="sidenav-link sidenav-toggle">
             <i class="sidenav-icon fas fa-building"></i>
             <div> @lang('sistema.menu_empresa.MeusDados')</div>
         </a>
 
         <ul class="sidenav-menu">
+            @shield('companies.indexMyCompany')
             <li class="sidenav-item {{(Route::is("sysCompany.company.index"))? "active": ""}}" data-toggle="tooltip"
-                data-placement="right" title="Empresas" >
+                data-placement="right" title="@lang('sistema.menu_empresa.AlterarDados')" >
                 <a class="sidenav-link" href="{{route("sysCompany.company.index")}}"><div><i class=" fas fa-id-card "></i> @lang('sistema.menu_empresa.AlterarDados')</div></a>
             </li>
+            @endshield
+            @shield('companies.changePassword')
+            <li class="sidenav-item {{(Route::is('sysCompany.company.users.change_password'))? "active": ""}}" data-toggle="tooltip"
+                data-placement="right" title="@lang('sistema.menu_empresa.TrocarSenha')" >
+                <a class="sidenav-link" href="{{route("sysCompany.company.users.change_password", Auth::user()->uuid)}}"><div><i class=" oi oi-key "></i> @lang('sistema.menu_empresa.TrocarSenha')</div></a>
+            </li>
+            @endshield
         </ul>
     </li>
 

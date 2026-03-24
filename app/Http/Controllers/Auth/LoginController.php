@@ -42,14 +42,12 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, User $user)
     {
-        $data = $request->all();
-
-        if($user->hasRoles(['superuser','admin','departamento','informatica','core','diretor'])) {
+        if ($user->hasAnyRole(['superuser', 'admin', 'departamento', 'informatica', 'core', 'diretor'])) {
             return redirect()->route('dashboard');
-        } else if($user->hasRoles(['empresa', 'empresa_estrangeira'])) {
+        } elseif ($user->hasAnyRole(['empresa', 'empresa_estrangeira'])) {
             return redirect()->route('exchange.index');
         } else {
-            return redirect()->route('app.home');
+            return redirect()->route('dashboard');
         }
     }
 }
