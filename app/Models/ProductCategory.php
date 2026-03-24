@@ -5,6 +5,7 @@ namespace PMEexport\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use PMEexport\Support\UploadStorage;
 use PMEexport\Traits\Uuids;
 
 /**
@@ -77,6 +78,7 @@ class ProductCategory extends Model
             return $this->photo;
         }
 
+        return UploadStorage::url($this->photo);
         $baseUrl = rtrim((string) config('filesystems.disks.s3.url', env('AWS_URL', '')), '/');
 
         if (!$baseUrl) {

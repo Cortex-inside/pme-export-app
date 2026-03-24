@@ -20,10 +20,10 @@
             <td>{!! $companyCertificate->request_dateFormat() !!}</td>
             <td>
                 <div class='btn-group'>
-                    @shield('certificateCategories.show')
+                    @can('certificateCategories.show')
                     <a href="{!! route('companyCertificates.show', [$companyCertificate->id]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                    @endshield
+                    @endcan
                 </div>
             </td>
         </tr>

@@ -22,17 +22,17 @@
             <td>
                 {!! Form::open(['route' => ['caes.destroy', $cae->uuid], 'method' => 'delete']) !!}
                 <div class='btn-group pull-right'>
-                    @shield('caes.show')
+                    @can('caes.show')
                     <a href="{!! route('caes.show', [$cae->uuid]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                    @endshield
-                    @shield('caes.edit')
+                    @endcan
+                    @can('caes.edit')
                     <a href="{!! route('caes.edit', [$cae->uuid]) !!}" class='btn
                     btn-info btn-sm'><i class="far fa-edit"></i> Editar</a>&nbsp;
-                    @endshield
-                    @shield('caes.destroy')
+                    @endcan
+                    @can('caes.destroy')
                     {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
-                    @endshield
+                    @endcan
                 </div>
                 {!! Form::close() !!}
             </td>

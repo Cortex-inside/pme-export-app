@@ -17,17 +17,17 @@
             <td>
                 {!! Form::open(['route' => ['certificateCategories.destroy', $certificateCategory->uuid], 'method' => 'delete']) !!}
                 <div class='btn-group pull-right'>
-                    @shield('certificateCategories.show')
+                    @can('certificateCategories.show')
                     <a href="{!! route('certificateCategories.show', [$certificateCategory->uuid]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                    @endshield
-                    @shield('certificateCategories.edit')
+                    @endcan
+                    @can('certificateCategories.edit')
                     <a href="{!! route('certificateCategories.edit', [$certificateCategory->uuid]) !!}" class='btn
                     btn-info btn-sm'><i class="far fa-edit"></i> Editar</a>&nbsp;
-                    @endshield
-                    @shield('certificateCategories.destroy')
+                    @endcan
+                    @can('certificateCategories.destroy')
                     {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
-                    @endshield
+                    @endcan
                 </div>
                 {!! Form::close() !!}
             </td>

@@ -1,4 +1,3 @@
-@include('layouts.admin.partials_menu_empresa')
 @if(Auth::user()->company->status != 5 && Auth::user()->company->status != 4 && Auth::user()->company->status != 2)
     <ul class="sidenav-inner py-1">
         <!-- Dashboards -->
@@ -17,22 +16,22 @@
             </a>
 
             <ul class="sidenav-menu">
-                @shield('sysCompany.companyAnnouncements.create')
+                @can('sysCompany.companyAnnouncements.create')
                 <li class="sidenav-item {{(Route::is("sysCompany.companyAnnouncements.create"))? "active": ""}}" data-toggle="tooltip"
                     data-placement="right" title="@lang('sistema.menu_empresa.Cadastrar')" >
                     <a class="sidenav-link" href="{{route("sysCompany.companyAnnouncements.create")}}"><div><i
                                     class=" feather icon-plus "></i> @lang('sistema.menu_empresa.Cadastrar')
                         </div></a>
                 </li>
-                @endshield
-                @shield('sysCompany.companyAnnouncements.indexByCompany')
+                @endcan
+                @can('sysCompany.companyAnnouncements.indexByCompany')
                 <li class="sidenav-item {{(Route::is("sysCompany.companyAnnouncements.indexByCompany"))? "active": ""}}"
                     data-toggle="tooltip"
                     data-placement="right" title="@lang('sistema.menu_empresa.Anuncio.Listar')" >
                     <a class="sidenav-link" href="{{route("sysCompany.companyAnnouncements.indexByCompany")}}"><div><i
                                     class=" feather icon-list "></i>  @lang('sistema.menu_empresa.Anuncio.Listar')</div></a>
                 </li>
-                @endshield
+                @endcan
 
             </ul>
         </li>
@@ -50,21 +49,21 @@
                     icon-list "></i> @lang('sistema.menu_empresa.Todos')</div></a>
                 </li>
 
-                @shield('exchange.requests-enviados')
+                @can('exchange.requests-enviados')
                 <li class="sidenav-item {{(Route::is("exchange.requests-enviados"))? "active": ""}}" data-toggle="tooltip"
                     data-placement="right" title="@lang('sistema.menu_empresa.Enviados')" >
                     <a class="sidenav-link" href="{{route("exchange.requests-enviados")}}"><div><i class=" feather
                     icon-upload "></i>  @lang('sistema.menu_empresa.Enviados')</div></a>
                 </li>
-                @endshield
-                @shield('exchange.requests-recebidos')
+                @endcan
+                @can('exchange.requests-recebidos')
                 <li class="sidenav-item {{(Route::is("exchange.requests-recebidos"))? "active": ""}}"
                     data-toggle="tooltip"
                     data-placement="right" title="@lang('sistema.menu_empresa.Recebidos')" >
                     <a class="sidenav-link" href="{{route("exchange.requests-recebidos")}}"><div><i class=" feather icon-download "></i>
                             @lang('sistema.menu_empresa.Recebidos')</div></a>
                 </li>
-                @endshield
+                @endcan
 
             </ul>
         </li>
@@ -76,20 +75,20 @@
             </a>
 
             <ul class="sidenav-menu">
-                @shield('certificates.index')
+                @can('certificates.index')
                 <li class="sidenav-item {{(Route::is("sysCompany.certificates.index"))? "active": ""}}" data-toggle="tooltip"
                     data-placement="right" title="@lang('sistema.menu_empresa.Solicitar')" >
                     <a class="sidenav-link" href="{{route("sysCompany.certificates.index")}}"><div><i class="fas fa-clipboard-list"></i> @lang('sistema.menu_empresa.Solicitar')</div></a>
                 </li>
-                @endshield
-                @shield('companyCertificates.index')
+                @endcan
+                @can('companyCertificates.index')
                 <li class="sidenav-item {{(Route::is("sysCompany.certificates.myCertificates"))? "active": ""}}"
                     data-toggle="tooltip"
                     data-placement="right" title="@lang('sistema.menu_empresa.MeusCertificados')" >
                     <a class="sidenav-link" href="{{route("sysCompany.certificates.myCertificates")}}"><div><i class=" fas fa-clipboard-check "></i>
                             @lang('sistema.menu_empresa.MeusCertificados')</div></a>
                 </li>
-                @endshield
+                @endcan
 
             </ul>
         </li>

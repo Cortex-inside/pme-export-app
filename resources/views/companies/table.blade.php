@@ -24,17 +24,17 @@
             <td>
                 {!! Form::open(['route' => ['companies.destroy', $company->uuid], 'method' => 'delete']) !!}
                 <div class='btn-group pull-right'>
-                    @shield('companies.show')
+                    @can('companies.show')
                     <a href="{!! route('companies.show', [$company->uuid]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                    @endshield
-                    @shield('companies.edit')
+                    @endcan
+                    @can('companies.edit')
                     <a href="{!! route('companies.edit', [$company->uuid]) !!}" class='btn
                     btn-info btn-sm'><i class="far fa-edit"></i> Editar</a>&nbsp;
-                    @endshield
-                    @shield('companies.destroy')
+                    @endcan
+                    @can('companies.destroy')
                     {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
-                    @endshield
+                    @endcan
                     @hasanyrole('empresa|empresa_estrangeira')
                     <a href="{!! route('sysCompany.company.index', [$company->uuid]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i>Show</a>&nbsp;

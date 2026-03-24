@@ -1,3 +1,4 @@
+@include('layouts.admin.menu_empresa_estrangeira')
 <li class="{{ Route::is('exchange.index') ? 'active' : '' }}"><a href="{!! route('exchange.index') !!}"><i class="fa  fa-bullhorn"></i> <span>@lang('sistema.menu_empresa.Anuncio')</span></a></li>
 <!-- EXEMPLO DE MENU MULTIPLO -->
 <li data-widget="tree"  class="  {{ Request::is('sysCompany/announcements*') ? 'active' : '' }}">

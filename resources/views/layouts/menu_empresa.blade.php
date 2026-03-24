@@ -1,3 +1,4 @@
+@include('layouts.admin.menu_empresa')
 @if(Auth::user()->company->status != 5 && Auth::user()->company->status != 4 && Auth::user()->company->status != 2)
 <li class="{{ Route::is('exchange.index') ? 'active' : '' }}"><a href="{!! route('exchange.index') !!}"><i
                 class="fa  fa-bullhorn"></i> <span>@lang('sistema.menu_empresa.Anuncio')</span></a></li>

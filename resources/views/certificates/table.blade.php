@@ -22,17 +22,17 @@
             <td>
                 {!! Form::open(['route' => ['certificates.destroy', $certificate->uuid], 'method' => 'delete']) !!}
                 <div class='btn-group pull-right'>
-                    @shield('certificates.show')
+                    @can('certificates.show')
                     <a href="{!! route('certificates.show', [$certificate->uuid]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                    @endshield
-                    @shield('certificates.edit')
+                    @endcan
+                    @can('certificates.edit')
                     <a href="{!! route('certificates.edit', [$certificate->uuid]) !!}" class='btn
                     btn-info btn-sm'><i class="far fa-edit"></i> Editar</a>&nbsp;
-                    @endshield
-                    @shield('certificates.destroy')
+                    @endcan
+                    @can('certificates.destroy')
                     {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
-                    @endshield
+                    @endcan
                 </div>
                 {!! Form::close() !!}
             </td>

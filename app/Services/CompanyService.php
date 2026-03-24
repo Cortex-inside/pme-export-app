@@ -11,6 +11,7 @@ namespace PMEexport\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
+use PMEexport\Support\UploadStorage;
 use PMEexport\Repositories\CompanyCaeRepository;
 use PMEexport\Repositories\CompanyEmailRepository;
 use PMEexport\Repositories\CompanyPhoneRepository;
@@ -90,21 +91,17 @@ class CompanyService
         $nuitDoc    = $request->file('nuit_doc');
 
         if($nuitDoc) {
-            $path = $nuitDoc->storePublicly(
-                '/imagens/documents', 's3'
-            );
+            $path = UploadStorage::storePublicly($nuitDoc, '/imagens/documents');
 
-            $path = env('AWS_URL') . $path;
+            $path = UploadStorage::url($path);
             $dados['nuit_doc'] = $path;
         }
 
         $alvaraDoc  = $request->file('alvara_doc');
         if($alvaraDoc) {
-            $path = $alvaraDoc->storePublicly(
-                '/imagens/documents', 's3'
-            );
+            $path = UploadStorage::storePublicly($alvaraDoc, '/imagens/documents');
 
-            $path = env('AWS_URL') . $path;
+            $path = UploadStorage::url($path);
             $dados['alvara_doc'] = $path;
         }
         //PASSANDO O STATUS PARA AGUARDANDO APROVAÇÃO
