@@ -22,7 +22,7 @@ class ProductsCategoryExport implements FromCollection, WithMapping, WithHeading
         return [
             $product_uuid->uuid,
             $product_uuid->name,
-            env('AWS_URL') . $product_uuid->photo,
+            optional($product_uuid)->photo_url,
         ];
     }
 
