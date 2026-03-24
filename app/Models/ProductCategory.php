@@ -78,10 +78,6 @@ class ProductCategory extends Model
             return $this->photo;
         }
 
-        if (filter_var($this->photo, FILTER_VALIDATE_URL)) {
-            return $this->photo;
-        }
-
         return UploadStorage::url($this->photo);
     }
 
