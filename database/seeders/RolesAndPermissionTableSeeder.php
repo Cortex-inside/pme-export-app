@@ -189,10 +189,18 @@ class RolesAndPermissionTableSeeder extends Seeder
 
         $companiesIndexMyCompany = Permission::findByName('companies.indexMyCompany');
         $companiesChangePassword = Permission::findByName('companies.changePassword');
+        $certificatesIndex = Permission::findByName('certificates.index');
+        $certificatesShow = Permission::findByName('certificates.show');
+        $certificatesCreate = Permission::findByName('certificates.create');
+        $companyCertificatesIndex = Permission::findByName('companyCertificates.index');
 
 
         $empresaRole->givePermissionTo($companiesIndexMyCompany);
         $empresaRole->givePermissionTo($companiesChangePassword);
+        $empresaRole->givePermissionTo($certificatesIndex);
+        $empresaRole->givePermissionTo($certificatesShow);
+        $empresaRole->givePermissionTo($certificatesCreate);
+        $empresaRole->givePermissionTo($companyCertificatesIndex);
         $empresaRole->givePermissionTo($exchangePedidos);
         $empresaRole->givePermissionTo($exchangePedidosEnviados);
         $empresaRole->givePermissionTo($exchangePedidosRecebidos);
@@ -220,6 +228,10 @@ class RolesAndPermissionTableSeeder extends Seeder
 
         $empresaEstrangeiraRole->givePermissionTo($companiesIndexMyCompany);
         $empresaEstrangeiraRole->givePermissionTo($companiesChangePassword);
+        $empresaEstrangeiraRole->givePermissionTo($certificatesIndex);
+        $empresaEstrangeiraRole->givePermissionTo($certificatesShow);
+        $empresaEstrangeiraRole->givePermissionTo($certificatesCreate);
+        $empresaEstrangeiraRole->givePermissionTo($companyCertificatesIndex);
         $empresaEstrangeiraRole->givePermissionTo($exchangePedidos);
         $empresaEstrangeiraRole->givePermissionTo($exchangePedidosEnviados);
         $empresaEstrangeiraRole->givePermissionTo($exchangePedidosRecebidos);
