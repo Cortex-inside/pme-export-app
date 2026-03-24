@@ -79,6 +79,13 @@ class ProductCategory extends Model
         }
 
         return UploadStorage::url($this->photo);
+        $baseUrl = rtrim((string) config('filesystems.disks.s3.url', env('AWS_URL', '')), '/');
+
+        if (!$baseUrl) {
+            return $this->photo;
+        }
+
+        return $baseUrl . '/' . ltrim($this->photo, '/');
     }
 
     public function nameFilter()
