@@ -3,10 +3,10 @@
     <div class="d-flex">
         <div class=" flex-grow-1"><h4 class="font-weight-bold py-3 mb-0"></h4></div>
         <div class="">
-            @shield('companies.edit')
+            @can('companies.edit')
             <a href="{!! route('companies.edit', [$company->uuid]) !!}" class='btn
                     btn-info'><i class="far fa-edit"></i> Editar</a>&nbsp;
-            @endshield
+            @endcan
 
             @if($company->status == 1)
                 <a class="btn btn-success " role="group" href="{{ route('companies.approve', $company->uuid) }}" onclick="if(confirm('Deseja realmente aprovar essa empresa?')) { return true } else {return false };"><i class="feather icon-thumbs-up"></i>  Aprovar</a>

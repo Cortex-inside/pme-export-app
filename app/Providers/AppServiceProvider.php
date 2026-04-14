@@ -2,6 +2,7 @@
 
 namespace PMEexport\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
         if (config('app.env') === 'production') {
             URL::forceScheme('https');
         }
+
+        Blade::if('shield', function ($permission) {
+            return auth()->check() && auth()->user()->can($permission);
+        });
 
         // Replaces removed infyomlabs/adminlte-templates package
         $this->loadViewsFrom(

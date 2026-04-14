@@ -160,13 +160,13 @@
                 <nav class="layout-footer footer bg-white">
                         <div class="container-fluid d-flex flex-wrap justify-content-between text-center container-p-x pb-3">
                             <div class="pt-3">
-                                <span class="footer-text font-weight-semibold">&copy; <a href="http://pmeexporte.co.mz"
+                                <span class="footer-text font-weight-semibold">&copy; <a href="{{ url('/') }}"
                                                                                          class="footer-link"
                                                                                          target="_blank">PmeExporte</a></span>
                             </div>
                             <div>
-                                {{--<a href="javascript:" class="footer-link pt-3">Quem somos ?</a>--}}
-                                {{--<a href="javascript:" class="footer-link pt-3 ml-4">Suporte</a>--}}
+                                <a href="{{ route('site.sobre') }}" class="footer-link pt-3" target="_blank">Quem somos?</a>
+                                <a href="{{ route('site.suporte') }}" class="footer-link pt-3 ml-4" target="_blank">Suporte</a>
                             </div>
                         </div>
                     </nav>

@@ -4,6 +4,8 @@ namespace PMEexport\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use PMEexport\Support\UploadStorage;
 use PMEexport\Traits\Uuids;
 
 /**
@@ -64,6 +66,20 @@ class ProductCategory extends Model
         'name' => 'required:max:255|min:3|string',
         'photo' => 'required',
     ];
+
+
+    public function getPhotoUrlAttribute()
+    {
+        if (!$this->photo) {
+            return null;
+        }
+
+        if (Str::startsWith($this->photo, ['http://', 'https://'])) {
+            return $this->photo;
+        }
+
+        return UploadStorage::url($this->photo);
+    }
 
     public function nameFilter()
     {

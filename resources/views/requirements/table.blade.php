@@ -20,17 +20,17 @@
                 <td>
                     {!! Form::open(['route' => ['requirements.destroy', $requirement->id], 'method' => 'delete']) !!}
                     <div class='btn-group pull-right'>
-                        @shield('requirements.show')
+                        @can('requirements.show')
                         <a href="{!! route('requirements.show', [$requirement->id]) !!}" class='btn
                         btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                        @endshield
-                        @shield('requirements.edit')
+                        @endcan
+                        @can('requirements.edit')
                         <a href="{!! route('requirements.edit', [$requirement->id]) !!}" class='btn
                         btn-info btn-sm'><i class="far fa-edit"></i> Editar</a>&nbsp;
-                        @endshield
-                        @shield('requirements.destroy')
+                        @endcan
+                        @can('requirements.destroy')
                         {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
-                        @endshield
+                        @endcan
                     </div>
                     {!! Form::close() !!}
                 </td>

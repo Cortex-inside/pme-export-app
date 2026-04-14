@@ -18,17 +18,17 @@
                 {!! Form::open(['route' => ['companyRepresentatives.destroy', $representative->id], 'method' =>
                 'delete']) !!}
                 <div class='btn-group pull-right'>
-                    @shield('companyRepresentatives.show')
+                    @can('companyRepresentatives.show')
                     <a href="{!! route('companyRepresentatives.show', [$representative->id]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                    @endshield
-                    @shield('companyRepresentatives.edit')
+                    @endcan
+                    @can('companyRepresentatives.edit')
                     <a href="{!! route('companyRepresentatives.edit', [$representative->id]) !!}" class='btn
                     btn-info btn-sm'><i class="far fa-edit"></i> Editar</a>&nbsp;
-                    @endshield
-                    @shield('companyRepresentatives.destroy')
+                    @endcan
+                    @can('companyRepresentatives.destroy')
                     {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
-                    @endshield
+                    @endcan
                 </div>
                 {!! Form::close() !!}
             </td>

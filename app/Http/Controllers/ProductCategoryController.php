@@ -16,6 +16,7 @@ use Flash;
 use PMEexport\Repositories\ProductRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use PMEexport\Support\UploadStorage;
 
 class ProductCategoryController extends AppBaseController
 {
@@ -67,9 +68,7 @@ class ProductCategoryController extends AppBaseController
 
         $imageRequest = $request->file('photo');
 
-        $path = $imageRequest->storePublicly(
-            '/imagens/categoria', 's3'
-        );
+        $path = UploadStorage::storePublicly($imageRequest, '/imagens/categoria');
 
         $input["photo"] = $path;
 
@@ -136,9 +135,7 @@ class ProductCategoryController extends AppBaseController
 
         $imageRequest = $request->file('photo');
 
-        $path = $imageRequest->storePublicly(
-            '/imagens/categoria', 's3'
-        );
+        $path = UploadStorage::storePublicly($imageRequest, '/imagens/categoria');
 
         $input = $request->all();
         $input["photo"] = $path;
