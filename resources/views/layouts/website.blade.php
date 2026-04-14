@@ -9,8 +9,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="PME-EXPORTE Ferramenta para as cooperativas de produtores de MPME – Instituto para Promoção de Pequenas e Médias Empresas (Moçambique) O Instituto para a Promoção das Pequenas e Médias Empresas">
 
-    <meta property="og:url" content="http://pmeexporte.co.mz/sobre" />
-    <meta property="og:image" content="http://pmeexporte.co.mz/img/logo/logo-316x352.png" />
+    <meta property="og:url" content="{{ url('/sobre') }}" />
+    <meta property="og:image" content="{{ asset('img/logo/logo-316x352.png') }}" />
 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui" />

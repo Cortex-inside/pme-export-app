@@ -7571,7 +7571,7 @@ function _g_map ()
 
 	if ( maps.length > 0 )
 	{
-		$.getScript('http://maps.google.com/maps/api/js?sensor=false', function( data, textStatus, jqxhr ) {
+		$.getScript('https://maps.google.com/maps/api/js?sensor=false', function( data, textStatus, jqxhr ) {
 
 			maps.each(function() {
 				var current_map = $(this);
