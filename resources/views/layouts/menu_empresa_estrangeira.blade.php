@@ -35,12 +35,8 @@
 </span>
     </a>
     <ul class="treeview-menu menu-open">
-        @shield('certificates.index')
             <li class="{{ Route::is('sysCompany.certificates.index') ? 'active' : '' }}"><a href="{!! route('sysCompany.certificates.index') !!}">@lang('sistema.menu_empresa.Solicitar')</a></li>
-        @endshield
-        @shield('companyCertificates.index')
             <li class="{{ Route::is('sysCompany.certificates.myCertificates') ? 'active' : '' }}"><a href="{!! route('sysCompany.certificates.myCertificates') !!}">@lang('sistema.menu_empresa.MeusCertificados')</a></li>
-        @endshield
     </ul>
 </li>
 <!-- EXEMPLO DE MENU MULTIPLO -->
@@ -52,12 +48,8 @@
                         </span>
     </a>
     <ul class="treeview-menu menu-open">
-        @shield('companies.indexMyCompany')
             <li class="{{ Route::is('sysCompany.company.index') ? 'active' : '' }}"><a href="{!! route('sysCompany.company.index') !!}">@lang('sistema.menu_empresa.AlterarDados')</a></li>
-        @endshield
-        @shield('companies.changePassword')
             <li class="{{ Route::is('sysCompany.company.users.change_password') ? 'active' : '' }}"><a href="{!! route('sysCompany.company.users.change_password',Auth::user()->uuid) !!}">@lang('sistema.menu_empresa.TrocarSenha')</a></li>
-        @endshield
     </ul>
 </li>
 <li>
