@@ -13,15 +13,9 @@
         </div>
         <div class="sidenav-divider mt-0"></div>
 
-        @hasrole('empresa')
             @include('layouts.admin.menu_empresa')
-        @endhasrole
-        @hasrole('empresa_estrangeira')
             @include('layouts.admin.menu_empresa_estrangeira')
-        @endhasrole
-        @hasanyrole('superuser|admin|departamento|informatica|core|diretor')
             @include('layouts.admin.menu_admin')
-        @endhasanyrole
 
     </div>
     <!-- [ Layout sidenav ] End -->
