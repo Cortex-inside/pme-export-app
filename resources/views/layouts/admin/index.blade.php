@@ -31,6 +31,7 @@
         <link rel="stylesheet" href="/assets/libs/perfect-scrollbar/perfect-scrollbar.css">
         <link rel="stylesheet" href="/assets/libs/flot/flot.css">
         <link rel="stylesheet" href="/css/custom.css">
+        @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
 
         @yield('css')
 

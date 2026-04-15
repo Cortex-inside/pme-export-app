@@ -17,14 +17,21 @@
 
         @if($announcements->count())
          @foreach($announcements as $announcement)
+            @php
+                $product = $announcement->product;
+                $company = $announcement->company;
+            @endphp
+            @if(!$product || !$company)
+                @continue
+            @endif
             @if($announcement->visibility == 1 AND $announcement->checkVisible())
                     <div class="col-md-6">
                         <div class="card mb-4 overflow-hidden">
                             <div class="card-body">
                                 {{--<div class="card-badges bg-danger text-white"><span>Urgent</span></div>--}}
-                                <a href="javascript:void(0)" class="text-dark text-large font-weight-semibold">Produto: {{$announcement->product->name}}</a>
+                                <a href="javascript:void(0)" class="text-dark text-large font-weight-semibold">Produto: {{$product->name}}</a>
                                 <div class="d-flex flex-wrap mt-3">
-                                    <div class="mr-3"><i class="vacancy-tooltip mr-1 ion ion-md-business text-primary" title="Department"></i> {!! $announcement->company->name !!}</div>
+                                    <div class="mr-3"><i class="vacancy-tooltip mr-1 ion ion-md-business text-primary" title="Department"></i> {!! $company->name !!}</div>
                                     <div class="mr-3"><i class="vacancy-tooltip mr-1 fas fa-project-diagram text-light"
                                                          title="Employment"></i> Mercado: {{$announcement->marketType()}}</div>
                                     <div class="mr-3"><i class="vacancy-tooltip mr-1 fas fa-money-check text-light"
@@ -80,9 +87,9 @@
                         <div class="card mb-4 overflow-hidden">
                             <div class="card-body">
                                 {{--<div class="card-badges bg-danger text-white"><span>Urgent</span></div>--}}
-                                <a href="javascript:void(0)" class="text-dark text-large font-weight-semibold">Produto: {{$announcement->product->name}}</a>
+                                <a href="javascript:void(0)" class="text-dark text-large font-weight-semibold">Produto: {{$product->name}}</a>
                                 <div class="d-flex flex-wrap mt-3">
-                                    <div class="mr-3"><i class="vacancy-tooltip mr-1 ion ion-md-business text-primary" title="Department"></i> {!! $announcement->company->name !!}</div>
+                                    <div class="mr-3"><i class="vacancy-tooltip mr-1 ion ion-md-business text-primary" title="Department"></i> {!! $company->name !!}</div>
                                     <div class="mr-3"><i class="vacancy-tooltip mr-1 fas fa-project-diagram text-light"
                                                          title="Employment"></i> Mercado: {{$announcement->marketType()}}</div>
                                     <div class="mr-3"><i class="vacancy-tooltip mr-1 fas fa-money-check text-light"
