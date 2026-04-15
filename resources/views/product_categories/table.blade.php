@@ -24,10 +24,6 @@
                     @can('productCategories.destroy')
                     {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
                     @endcan
-                    @hasanyrole('empresa|empresa_estrangeira')
-                        <a href="{!! route('productCategories.company.index', [$productCategory->uuid]) !!}" class='btn
-                        btn-secondary btn-sm'><i class="far fa-eye"></i>Visualizar</a>&nbsp;
-                    @endhasanyrole
                 </div>
                 {!! Form::close() !!}
             </td>

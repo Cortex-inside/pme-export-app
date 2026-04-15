@@ -10,8 +10,8 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
-                    @include('requests.show_fields')
-                    <a href="{!! route('request_announcements') !!}" class="btn btn-default">Back</a>
+                    @include('request_announcements.show_fields')
+                    <a href="{!! route('exchange.requests') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

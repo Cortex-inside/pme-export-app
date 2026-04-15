@@ -21,9 +21,8 @@
                         <h3 class="box-title">Exportar OSs para arquivo Excel</h3>
                     </div>
                 </div>
-                    <form class="send-form" action="{{ route('export.export') }}" method="POST" enctype="multipart/form-data">
+                    <form class="send-form" action="{{ route('productCategories.export') }}" method="GET" enctype="multipart/form-data">
                         <div class="box-body">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="col-md-12">
                                 <div class="col-md-4">
                                     <div>Agendado</div>

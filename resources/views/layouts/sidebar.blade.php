@@ -22,18 +22,10 @@
         <!-- Sidebar Menu -->
 
         <ul class="sidebar-menu" data-widget="tree">
-            @hasrole('empresa')
                 @include('layouts.menu_empresa')
-            @endhasrole
-            @hasrole('empresa_estrangeira')
                 @include('layouts.menu_empresa_estrangeira')
-            @endhasrole
-            @hasanyrole('superuser|admin|departamento|informatica|core|diretor')
                 @include('layouts.menu_admin')
-            @endhasanyrole
-            {{--@hasrole('superuser')--}}
                 {{--@include('layouts.menu')--}}
-            {{--@endhasrole--}}
         </ul>
         <!-- /.sidebar-menu -->
     </section>

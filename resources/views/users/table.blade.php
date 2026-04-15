@@ -23,21 +23,15 @@
             <td>
                 {!! Form::open(['route' => ['users.destroy', $user->uuid], 'method' => 'delete']) !!}
                 <div class='btn-group pull-right'>
-                    @can('users.show')
                     <a href="{!! route('users.show', [$user->uuid]) !!}" class='btn
                     btn-secondary btn-sm'><i class="far fa-eye"></i> Visualizar</a>&nbsp;
-                    @endcan
-                    @can('users.edit')
                     <a href="{!! route('users.edit', [$user->uuid]) !!}" class='btn
                     btn-info btn-sm'><i class="far fa-edit"></i> Editar</a>&nbsp;
-                    @endcan
-                    @can('users.destroy')
                         @if(!Route::is("users.indexEmpresa"))
                             @if($user->id != Auth::user()->id)
                             {!! Form::button('<i class="feather icon-trash-2"></i>Excluir', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que quer apagar esse item?')"]) !!}
                             @endif
                         @endif
-                    @endcan
                 </div>
                 {!! Form::close() !!}
             </td>
