@@ -1,19 +1,12 @@
 
 import _ from 'lodash';
-<<<<<<< codex/create-new-branch-and-remove-code-exposures-nap8z6
 import axios from 'axios';
 
 window._ = _;
-=======
-import * as Popper from '@popperjs/core';
-import $ from 'jquery';
 import axios from 'axios';
-import 'bootstrap';
 
 window._ = _;
-window.Popper = Popper;
-window.$ = window.jQuery = $;
->>>>>>> main
+main
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

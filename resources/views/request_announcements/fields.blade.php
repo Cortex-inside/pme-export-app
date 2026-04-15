@@ -25,5 +25,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('requests.index') !!}" class="btn btn-default">Cancel</a>
+    <a href="{!! route('exchange.requests') !!}" class="btn btn-default">Cancel</a>
 </div>
