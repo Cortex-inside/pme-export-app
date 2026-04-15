@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
     @yield('css')
 </head>
 
