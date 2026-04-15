@@ -104,10 +104,8 @@
     <ul class="treeview-menu menu-open">
         <li class="{{ Route::is('users*') ? 'active' : '' }}"><a href="{!! route('users.index') !!}">Usuários</a></li>
         <li class="{{ Route::is('users*') ? 'active' : '' }}"><a href="{!! route('users.indexEmpresa') !!}">Usuários Empresas</a></li>
-        @hasrole('superuser')<li class="{{ Route::is('group_users*') ? 'active' : '' }}"><a href="{!! route('group_users.index') !!}">Grupos de Acesso</a></li>@endhasrole
     </ul>
 </li>
-@hasrole('superuser')
 <li  data-widget="tree" class=" {{ Request::is('admin/roles*') || Request::is('admin/permissions*') ? 'active' : '' }}">
     <a href="#">
         <i class="fa fa-key"></i> <span>Administrativo</span>
@@ -120,7 +118,6 @@
         <li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{!! route('roles.index') !!}">Regras</a></li>
     </ul>
 </li>
-@endhasrole
 <li>
     <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="fa fa-sign-out"></i> <span>Sair</span>

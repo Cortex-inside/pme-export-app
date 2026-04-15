@@ -124,13 +124,13 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
 
-                                    @hasanyrole('empresa|empresa_estrangeira')
-                                    <a href="{{route("sysCompany.company.users.change_password", Auth::user()->uuid)}}" class="dropdown-item">
-                                        <i class="feather icon-user text-muted"></i> &nbsp; Trocar Senha</a>
+                                    @if(Auth::user()->company)
+                                        <a href="{{route("sysCompany.company.users.change_password", Auth::user()->uuid)}}" class="dropdown-item">
+                                            <i class="feather icon-user text-muted"></i> &nbsp; Trocar Senha</a>
                                     @else
                                         <a href="{{route("users.edit", Auth::user()->uuid)}}" class="dropdown-item">
                                             <i class="feather icon-user text-muted"></i> &nbsp; Perfil</a>
-                                    @endhasanyrole
+                                    @endif
 
 
                                     <div class="dropdown-divider"></div>
