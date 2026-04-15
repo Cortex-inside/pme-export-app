@@ -1,6 +1,6 @@
 
 import _ from 'lodash';
-import Popper from 'popper.js';
+import * as Popper from '@popperjs/core';
 import $ from 'jquery';
 import axios from 'axios';
 import 'bootstrap';
